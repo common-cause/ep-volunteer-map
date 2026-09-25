@@ -57,6 +57,13 @@ roles and would disable good rows.
 
 ## 3. Decide the items
 
+**Read the contract's `status.in_flight` first.** Rob uses it for per-cycle
+instructions, such as a role to skip while a state unpublishes it. Those notes
+override the rules below.
+
+A key in `staff_owned_keys` means a human owns **that role**. Don't recreate
+the role under a different slug either.
+
 For each state with trainings:
 
 - **One item per distinct role.** Different raw strings for the same job are

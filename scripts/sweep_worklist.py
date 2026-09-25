@@ -58,6 +58,8 @@ def normalize_link(value) -> str | None:
         return None
     if not re.match(r"^[a-z][a-z0-9+.\-]*:", text, re.I):
         text = "https://" + text
+    if re.match(r"^https?://[^/?#]+$", text, re.I):
+        text += "/"   # 'https://protectthevote.net' and '.../' are one front door
     return text if is_http_url(text) else None
 
 

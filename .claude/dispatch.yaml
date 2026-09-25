@@ -36,17 +36,28 @@
 # =============================================================================
 
 version: 1
-revision: 1
+revision: 2
 project: ep-volunteer-map
 owner: rkerth-cc
 last_verified: 2026-09-25
 
 status:
-  freezes:
-    - "No scheduled sweep until Rob has reviewed and approved the first run's
-       rows in the Sheet (SPEC Phase 2 Q4). Lifts when Rob records the
-       approval in docs/SPEC.md and removes this entry."
-  in_flight: []
+  # The first-run freeze lifted 2026-09-25: Rob reviewed and approved the
+  # first run in session (33 rows applied; recorded in docs/SPEC.md Phase 2).
+  # Lifting it does NOT make the task dispatchable. That still needs Rob's
+  # grant in the meta catalog, and the Task Scheduler vehicle stays disabled
+  # until then.
+  freezes: []
+  in_flight:
+    - "SKIP TWO MN ROLES THIS CYCLE (Rob, 2026-09-25). Minnesota is
+       unpublishing two PTV trainings: 'Minnesota Election Protection Legal
+       Volunteer Training' (role string 'Election Protection Volunteer 2024')
+       and 'Student Legal Training' (role 'Student Volunteer'). While either
+       is still in the training payload, do NOT create an item for it under
+       any key, and don't fold it into another MN item. Name it in the report
+       as skipped per this note. REMOVE this note once both have left the
+       payload; after that, a reappearance is a new role and is treated
+       normally."
 
 notes:
   - "Run from the repo root against the project venv (.venv/Scripts/python.exe)."

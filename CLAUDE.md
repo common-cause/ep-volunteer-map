@@ -19,13 +19,22 @@ the Sheet id and anything row-like out of it.
   (`bash scripts/build_site.sh && python -m http.server -d _site`)
 - `docs/wordpress_embed.md`: the snippet + runbook for the protectthevote.net admin
 
-Live: Civis job 370504796 runs 07:00 + 15:00 ET. Remaining: send the embed
-runbook to the protectthevote.net admin; rotate the PAT before 2026-12-24.
+Live: Civis job 370504796 runs 07:00 + 15:00 ET. The Sheet was seeded
+2026-09-25 by a Rob-reviewed first sweep (33 rows). The scheduled sweep
+(06:00 / 14:00, Task Scheduler vehicle **disabled**) waits on Rob's grant.
+Remaining: the grant; send the embed runbook to the protectthevote.net admin;
+rotate the PAT before 2026-12-24.
 
 ## Shape (from the spec)
 
-- **Deterministic pipeline, so it runs on Civis.** No judgment, no dispatch
-  contract. Create `civis/SCHEDULED_SCRIPTS.md` the moment the first job exists.
+- **Two jobs, two mechanisms.** The *publish* (Sheet → JSON → Pages) is
+  deterministic and runs on Civis (`civis/SCHEDULED_SCRIPTS.md`). The
+  *training-map sweep* (SPEC "Phase 2") fills the Sheet ahead of each publish,
+  and it is a judgment pass: role grouping, public copy, link choice. So it's
+  a dispatch `loop` (`.claude/dispatch.yaml`, runbook
+  `.claude/skills/training-map-sweep/`), and it writes only `source = sweep`
+  rows, through `scripts/sweep_apply.py`. State staff edit their own rows in
+  the same Sheet.
 - **Lift, don't rewrite:** the pipeline comes from `dynamic-action-map`
   (sync, Civis body, allowlist Pages deploy). The per-state list map and iframe
   height reporting come from `ep-training-map`'s public build. The brand comes

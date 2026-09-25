@@ -161,9 +161,11 @@ def main() -> int:
             print("  " + e, file=sys.stderr)
         return 3
 
-    from ccef_connections import SheetsConnector
-    with SheetsConnector() as conn:
-        ws = conn.get_spreadsheet(sheet_id).worksheet(tab)
+    # SheetsConnector is read-only by design (its scopes are *.readonly); the
+    # writer shares the same credential with write scopes.
+    from ccef_connections import SheetsWriterConnector
+    with SheetsWriterConnector() as conn:
+        ws = conn.open_spreadsheet(sheet_id).worksheet(tab)
         headers = [h.strip().lower() for h in ws.row_values(1)]
         missing = [f for f in FIELDS if f not in headers]
         if missing:

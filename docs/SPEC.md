@@ -190,7 +190,21 @@ copy), so under the CLAUDE.md routing rule it can't run on Civis. It's a
 - **First run:** done interactively with Rob to populate the Sheet. The
   scheduled sweep maintains it after that.
 
-### Open (settle one at a time)
+### First run (2026-09-25, reviewed and approved by Rob in session)
+
+- **33 rows applied** through `sweep_apply.py` (proposal of 35, less two).
+- **Removed at review:** MN "Legal Volunteer" and MN "Student Volunteer".
+  Minnesota is unpublishing those trainings. The skip is carried to
+  scheduled runs as a contract `in_flight` note until they leave the payload.
+- **RI** kept, although its trainings are titled for the September primary.
+  Rob will flag them to RI for retitling.
+- **OR's column K** changed during the day to a Common Cause action form, and
+  it outranks PTV per Q3, so both OR items link there.
+- Everything else as proposed. The approval lifts the contract's first-run
+  freeze. The scheduled sweep is still ungranted, and its Task Scheduler
+  vehicle stays disabled until Rob grants a tier.
+
+### Questions (all six settled with Rob, 2026-09-25)
 
 1. ~~PTV link target.~~ Settled (Rob, 2026-09-25): **`https://protectthevote.net/`**,
    the PTV registration page, for every PTV-role item **and** the blank-state

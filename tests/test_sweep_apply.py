@@ -39,7 +39,9 @@ def test_worklist_front_doors():
 
 
 def test_normalize_link():
-    assert w.normalize_link("protectthevote.net") == "https://protectthevote.net"
+    assert w.normalize_link("protectthevote.net") == "https://protectthevote.net/"
+    assert w.normalize_link("https://protectthevote.net") == "https://protectthevote.net/"
+    assert w.normalize_link("https://x.org/form?a=1") == "https://x.org/form?a=1"
     assert w.normalize_link("javascript:alert(1)") is None
     assert w.normalize_link("") is None
 

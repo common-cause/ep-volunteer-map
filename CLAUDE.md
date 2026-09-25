@@ -4,14 +4,15 @@ A sheet-backed US map of Election Protection volunteer opportunities, to be
 embedded on protectthevote.net. Organizers list opportunities (state, title,
 description, get-involved link) in a Google Sheet. A twice-daily Civis job
 publishes them to GitHub Pages, and each state opens a list of its
-opportunities. Requested by Amy; owned by Rob (campaigns).
+opportunities. Requested by Amy (a state ED); owned and signed off by Rob (campaigns).
 
-## Status: SPEC STAGE
+## Status: SPEC SETTLED, READY TO BUILD
 
-Nothing is built. **Read `docs/SPEC.md` first.** It records what's decided,
-what to lift from which sibling project, and eight open questions. Settle the
-open questions with Rob **one at a time**, recording each answer in SPEC.md as
-it lands, before building the part it affects.
+Nothing is built. **Read `docs/SPEC.md` first.** It records every decision
+(all eight questions answered 2026-09-25) and what to lift from which sibling
+project. The Sheet exists; the repo is **public** (org is on GitHub free, so
+no Pages from private repos), so keep the Sheet id and anything row-like out
+of it.
 
 ## Shape (from the spec)
 

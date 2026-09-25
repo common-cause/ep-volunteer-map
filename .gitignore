@@ -4,3 +4,7 @@ tmp/
 .idea/
 *.iml
 inbox/
+.env
+.env.*
+.venv
+__pycache__/

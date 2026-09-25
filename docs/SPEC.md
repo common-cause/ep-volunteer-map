@@ -1,8 +1,10 @@
 # ep-volunteer-map — project spec
 
-**Status:** spec only, nothing built yet. · **Written:** 2026-09-25, in the
-meta-project, from Rob's brief. · **Requested by:** Amy. **Owner:** Rob
-(campaigns).
+**Status:** spec settled (all open questions answered 2026-09-25); nothing
+built yet. · **Written:** 2026-09-25, in the
+meta-project, from Rob's brief. · **Requested by:** Amy (a state ED, not
+national program staff). **Owner and sign-off:** Rob (campaigns). Amy's input
+is welcome, but she doesn't have final approval over copy or behaviour.
 
 ## One line
 
@@ -17,11 +19,12 @@ Organizers keep a Google Sheet. Each row is one opportunity:
 
 | column | required | notes |
 |---|---|---|
-| `state` | yes | full name or USPS code; see "National rows" below |
+| `state` | yes | full name or USPS code; one state per row (no national rows) |
 | `title` | yes | short, shown as the list-item heading |
 | `description` | yes | a paragraph; blank-line runs collapse (same rule as dynamic-action-map) |
 | `link` | yes | the "get involved" URL. **http(s) only**, validated at both ends |
 | `enabled` | no | blank or TRUE = shown; FALSE hides the row without deleting it |
+| `ends` | no | a date; the row shows through 23:59 America/New_York that day, then the sync drops it. Blank = no expiry. An unparseable date rejects the row with a warning (fail visible, not open) |
 
 Reserve `last updated` and `updated by` columns for editors, and have the sync
 ignore them, as dynamic-action-map does. Headers match case-insensitively.
@@ -34,7 +37,7 @@ nothing shows a fallback that points to protectthevote.net's main signup.
 
 ```
 Google Sheet (organizers edit)
-  -> Civis job, TWICE DAILY (times TBD)      scripts/sync_opportunities.py
+  -> Civis job, daily 07:00 + 15:00 ET       scripts/sync_opportunities.py
        read via ccef_connections SheetsConnector
        validate rows -> data/opportunities.json
        skip if content unchanged (hash of payload, NOT a timestamp)
@@ -51,7 +54,7 @@ the moment it exists.
 
 | from | take | change |
 |---|---|---|
-| `dynamic-action-map/scripts/sync_actions.py` | Sheet read, header normalisation, URL scheme check, atomic write, content-hash gate, `--push` | one row → **list** per state; no DEFAULT-row logic; add `enabled` and national rows |
+| `dynamic-action-map/scripts/sync_actions.py` | Sheet read, header normalisation, URL scheme check, atomic write, content-hash gate, `--push` | one row → **list** per state; no DEFAULT-row logic; add `enabled` |
 | `dynamic-action-map/civis/sync_actions.sh` + `SCHEDULED_SCRIPTS.md` | the GitHub-backed job body; the pinned `ccef-connections[sheets] @ git+…@<tag>` install; `.gitattributes` `*.sh eol=lf` | names; schedule ×2 |
 | `dynamic-action-map/.github/workflows/deploy.yml` | the **allowlist** Pages deploy (publishes named files, not the checkout) | file list |
 | `ep-training-map/src/ep_training_map/public.py` | the state-list-map front end (per-state lists, postMessage height reporting for the iframe) and EP coalition styling | render opportunities instead of trainings; header copy |
@@ -63,32 +66,54 @@ the moment it exists.
 - **Host:** protectthevote.net, as an iframe in a Custom HTML block (same admin
   and same pattern as the public training map). **Brand:** EP coalition.
 - **Department:** campaigns.
-- **Refresh:** twice daily.
+- **Refresh:** twice daily, 07:00 and 15:00 ET (Q6).
+- **The Sheet** (Q1): "EP Volunteer Opportunities Map", tab `Opportunities`.
+  Its id is `GOOGLE_SHEET_ID` in the local `.env` (the repo is public; keep
+  the id out of it). It lives in the C&O external Shared Drive folder, the
+  Sheets MCP's default. Access is inherited from that folder: campaigns-g and
+  named staff are organizers, allstaff-g can read, and the fleet Sheets
+  service account is fileOrganizer, so the sync can read it. Header row written (the columns
+  above, plus the two editor columns). Organizers outside campaigns-g need
+  editor access granted on the file itself.
 
-## Open (settle these with Rob or Amy before building; one at a time)
+## Questions (all eight settled with Rob, 2026-09-25)
 
-1. **Who owns the Sheet, and where does it live?** It should be in a Shared
-   Drive, shared (Viewer) with the service account behind
-   `GOOGLE_SHEETS_CREDENTIALS_PASSWORD`. Who, besides Amy, can edit?
-2. **National/remote opportunities.** Proposal: `state` = `ALL` (or
-   `National`) shows the row in every state's list, marked "Nationwide", so no
-   one copies a row 50 times. Confirm the keyword.
-3. **Do opportunities expire?** An optional `ends` date that auto-hides past
-   rows would stop the map going stale, the main way a sheet-backed map rots.
-4. **Contact details in descriptions.** The map is public and will spread. Should
-   the sync **refuse** rows whose description contains an email address or phone
-   number (and warn), with contact going through the link only? Recommended: yes.
-5. **Public repo or private?** The repo was created private (the fleet
-   default). Pages from a private org repo depends on the org's plan. The
-   published site is public either way, so the real question is only whether
-   the source is visible. Check `gh api orgs/common-cause --jq .plan` before
-   choosing.
-6. **Run times** for the two Civis runs. Check `schedules/cloud_schedule.md`
-   for Sheets-API neighbours at those hours.
-7. **Header copy and empty-state copy.** Suggestion: "Volunteer with Election
-   Protection. Find opportunities in your state." Amy's call.
-8. **Ordering within a state:** Sheet order (editor-controlled), or
-   alphabetical/by date?
+1. ~~Who owns the Sheet, and where does it live?~~ Settled; see Decided.
+2. ~~National/remote opportunities.~~ Settled (Rob, 2026-09-25): **none.**
+   Every row belongs to one state. No national keyword; a `state` value that
+   isn't a state name or USPS code is rejected with a warning, like any other
+   bad row.
+3. ~~Do opportunities expire?~~ Settled (Rob, 2026-09-25): **yes**, optional
+   `ends` column, visible through end of day Eastern (see the column table).
+   With the 07:00 run, an expired row lingers up to ~7h past midnight;
+   accepted. Note: the content-hash gate means an expiry changes the payload,
+   so the run that drops it pushes, as it should.
+4. ~~Contact details in descriptions.~~ Settled (Rob, 2026-09-25): **no
+   filter.** States publish what they choose. The Sheet itself states plainly
+   that everything entered is published on a public national map; that notice
+   is the control. It lives in a first-position `Read me` tab, so the sync
+   must open the `Opportunities` tab **by name**, never "first tab". If the
+   column set changes, update `Read me` too. The sync still escapes all text for HTML and still enforces
+   http(s)-only links (safety, not content policy).
+5. ~~Public repo or private?~~ Settled (Rob, 2026-09-25): **public**. The org
+   is on GitHub's free plan, which has no Pages for private repos; siblings
+   dynamic-action-map and ep-training-map-public are public for the same
+   reason. Consequence: nothing sensitive in the repo, ever, including the
+   Sheet id (local `.env` only) and anything that looks like row data.
+6. ~~Run times.~~ Settled (Rob, 2026-09-25): **daily 07:00 and 15:00
+   America/New_York.** Clear of the other Sheets-API jobs (DAM 06:00, EP
+   Syncs 08:15, EP Dashboards 10:30/22:30 per `cloud_schedule.md` that day).
+   07:00 publishes overnight edits and drops rows whose `ends` day has passed;
+   15:00 publishes the morning's edits the same day.
+7. ~~Header copy and empty-state copy.~~ Settled (Rob, 2026-09-25):
+   - Header: **"Volunteer with Election Protection"**, subhead **"Find
+     opportunities in your state."**
+   - Empty state: **"There are no listed opportunities in {State} right now.
+     You can still sign up to volunteer with Election Protection."** plus a
+     button to the main signup, `https://protectthevote.net` (the signup is
+     front and center on its home page).
+8. ~~Ordering within a state.~~ Settled (Rob, 2026-09-25): **Sheet order.**
+   The sync preserves row order per state; the front end must not re-sort.
 
 ## Credentials (declare blank, then reseed from meta, scoped with `--keys`)
 

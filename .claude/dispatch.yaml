@@ -1,0 +1,226 @@
+# =============================================================================
+# DISPATCH CONTRACT — ep-volunteer-map
+# Format: templates/dispatch.yaml v1 (meta repo) · Law: docs/dispatch_treaty.md
+# =============================================================================
+# One task type: the training-map sweep (docs/SPEC.md "Phase 2", every rule
+# settled with Rob 2026-09-25).
+#
+# WHY A DISPATCH CONTRACT AND NOT CIVIS. This project already has a Civis job
+# (EP Volunteer Map Sync, 370504796), and it stays exactly as it is: a
+# deterministic Sheet -> JSON -> Pages publish. The sweep is a different job
+# that runs BEFORE it. The sweep decides which trainings are the same volunteer
+# role, names the role and writes public copy for it, and picks a front-door
+# link where no rule does. That's a judgment pass, and subscription Claude Code
+# can't run on Civis, so it's a local loop fired through the tower (CLAUDE.md
+# routing rule; treaty §2.8).
+#
+# THE WRITE SURFACE IS MECHANICAL even though the judgment isn't. The agent
+# writes a proposal file; scripts/sweep_apply.py is the only writer, and it
+# enforces ownership (source = sweep rows only), the settled link rule, content
+# rules (no hotline, no contact details, no years in titles) and a shrink
+# guard. What's left for semantic verification is the part a script can't
+# check: whether the roles were grouped sensibly and the copy is accurate and
+# on-voice. Hence verify: semantic.
+#
+# VEHICLE: scripts/run_sweep_agent.ps1 via Task Scheduler entry
+# "EP Volunteer Map - training sweep agent" (06:00 and 14:00), registered
+# DISABLED. It calls the tower's scripts/dispatch_fire.py; it never runs
+# claude -p or sweep_apply.py directly. Enabling the task is the same act as
+# the grant.
+#
+# NO GRANT IS CLAIMED HERE. Only Rob grants a tier (meta projects_index.yaml).
+# Until then the roster computes dispatchable: false, which is the correct
+# resting state. The FIRST RUN is done interactively with Rob, who reviews the
+# rows before the first Civis publish (SPEC Q4); that is a residual-step run,
+# not a dispatch.
+# =============================================================================
+
+version: 1
+revision: 1
+project: ep-volunteer-map
+owner: rkerth-cc
+last_verified: 2026-09-25
+
+status:
+  freezes:
+    - "No scheduled sweep until Rob has reviewed and approved the first run's
+       rows in the Sheet (SPEC Phase 2 Q4). Lifts when Rob records the
+       approval in docs/SPEC.md and removes this entry."
+  in_flight: []
+
+notes:
+  - "Run from the repo root against the project venv (.venv/Scripts/python.exe)."
+  - "Local-only by choice, not necessity: the inputs are public or
+     Sheets-API-reachable, but the agent is subscription Claude Code, which
+     only runs on Rob's machine."
+  - "PUBLIC OUTPUT. Everything the sweep writes is published to a public page
+     embedded on protectthevote.net within hours. The Civis sync publishes;
+     the sweep never does."
+  - "This project doesn't own the trainings. They come from ep-training-map
+     (public payload), which owns what counts as an EP training (via
+     ep-dashboards' training_event_map). A training missing here is traced
+     upstream, never patched in."
+  - "The coalition plan sheet (Izzy's 50 State EP Coalition Plan) is read for
+     columns A and K of 'In-Depth Landscape' ONLY. That tab holds state leads
+     and partners; nothing else is read, copied, logged or quoted. Its id is
+     COALITION_PLAN_SHEET_ID in the local .env."
+
+task_types:
+
+  - id: training-map-sweep
+    title: Volunteer-map training sweep
+    class: loop
+    callable_by: human
+    summary: >
+      Turns the EP Training Map's public payload and the coalition plan's
+      recruitment links into one front-door item per state volunteer role in
+      the volunteer-map Sheet (generated title and description, settled link
+      rule), writing only the sweep's own rows, ahead of each Civis publish.
+    tags: [volunteer-map, sweep, training-map, ep, sheet, front-door, copy]
+    examples:
+      - "run the volunteer map sweep"
+      - "refresh the volunteer map from the training map"
+      - "why doesn't the volunteer map show Michigan's roving monitors"
+
+    runbook: .claude/skills/training-map-sweep/SKILL.md
+
+    schedule: >
+      Twice daily, 06:00 and 14:00 America/New_York: an hour before each Civis
+      publish (07:00 / 15:00), and 3 to 7 hours after each training-map
+      publish (23:00 / 11:00). Task Scheduler "EP Volunteer Map - training
+      sweep agent" runs scripts/run_sweep_agent.ps1, which fires the tower.
+      Registered disabled; enabled with the grant. A missed slot is harmless:
+      Civis republishes the Sheet as it stands.
+    detection_surface: >
+      scripts/sweep_worklist.py: the training payload's generated_at and
+      per-state roles, the coalition-plan K links, and the sweep's current rows
+      and staff-owned keys, read live. Then sweep_apply.py --dry-run, whose
+      create/update/disable diff is the measure of change. "No change" is the
+      common, healthy result.
+    heartbeat: >
+      logs/sweep_agent/<timestamp>.log from the vehicle (gitignored, newest 60
+      kept), and tmp/sweep/apply_report.json. Under law the ledger DISPATCH
+      row is the real heartbeat.
+
+    parameters: []
+    ask_rules: []
+    # Both empty, and necessarily so: origin=scheduled can't interview
+    # (treaty §5). Every condition that would be a question is an escalation.
+
+    preconditions:
+      - "Local-only: Rob's Windows machine, project venv with
+         ccef-connections[sheets] and tzdata."
+      - "`.venv/Scripts/python.exe -m pytest -q` is green."
+      - ".env has GOOGLE_SHEETS_CREDENTIALS_PASSWORD, GOOGLE_SHEET_ID and
+         COALITION_PLAN_SHEET_ID. The fleet Sheets service account can read
+         the coalition plan and edit the volunteer-map Sheet."
+      - "The training payload at
+         common-cause.github.io/ep-training-map-public/trainings.json is
+         reachable and under 36h old."
+
+    writes:
+      - system: Google Sheets
+        operation: "Via scripts/sweep_apply.py ONLY: on the 'Opportunities' tab
+                    of the volunteer-map Sheet, append rows with source = sweep;
+                    update state/title/description/link/enabled/last updated/
+                    updated by on existing source = sweep rows; set enabled =
+                    FALSE on source = sweep rows that left the proposal."
+        reversible: true
+        idempotent: true
+        destructive: false
+        notes: >
+          Never deletes a row, and never touches a row whose source isn't
+          sweep (the script re-reads ownership live at write time). Disabling
+          is reversible by re-proposing the key. Idempotent: an unchanged
+          proposal writes nothing. The effect is public within hours via the
+          Civis sync, which is why the content rules and verify: semantic
+          exist.
+      - system: local filesystem
+        operation: "Write tmp/sweep/worklist.json, proposal.json and
+                    apply_report.json (gitignored)."
+        reversible: true
+        idempotent: true
+        destructive: false
+        notes: "Scratch files; contain only public data and recruitment URLs."
+
+    guards:
+      - "NEVER pass --allow-shrink to sweep_apply.py. The shrink guard is where a
+         partial upstream payload would otherwise quietly hide real
+         opportunities. Diagnose and report; Rob decides."
+      - "Never write to the Sheet except through sweep_apply.py, and never touch
+         a row whose source isn't sweep, whatever it contains."
+      - "Never reuse a key listed in staff_owned_keys. A human took that role
+         over."
+      - "Copy stability: carry an existing row's title and description through
+         unchanged unless its role changed. Rob approved the wording."
+      - "Links only from the worklist: a state's front_door, or (where
+         agent_picks_link) one of its own training URLs. Never browse for
+         links."
+      - "Read coalition-plan columns A and K only."
+      - "At most one retry after a validation refusal (exit 3), and only to fix
+         a genuine mistake in the proposal."
+
+    abort:
+      max_minutes: 20
+      max_actions: 60
+      # A normal run is two script calls and a short proposal. The headroom is
+      # for a heavy-change day (a new state's trainings landing, about 5 roles
+      # of copy).
+
+    evidence_of_done:
+      - "Training payload generated_at and its age in hours."
+      - "Counts: states with trainings, PTV states, K links, items proposed."
+      - "sweep_apply.py result: created / updated / disabled counts and keys
+         (from tmp/sweep/apply_report.json), or 'no change'."
+      - "link_choices for every agent-picked link, with the reason."
+      - "staff_owned_keys skipped, if any."
+      - "Anomalies: unclassifiable roles, suspicious K links, states whose
+         trainings vanished."
+
+    verify: semantic
+    # The mechanical tier covers ownership, links, content rules and the diff.
+    # Semantic is required because what reaches the public is COPY: a role
+    # merged wrongly, a description that promises the wrong training format,
+    # or a title that misnames the job all pass every mechanical check.
+
+    error_budget:
+      window: 20
+      min_runs_floor: 5
+      pass_threshold: 0.9
+      # Twice daily, so 20 runs is about ten days. A correctly diagnosed
+      # refusal (stale payload, shrink guard) is a success under the release
+      # valve. A wrong merge, re-keyed rows, drifting copy, or a staff row
+      # touched counts against it.
+
+    ticketing:
+      asana_project: "1217842576164435"   # Dispatch Ops (unrestricted)
+      # Unrestricted is correct: reports carry keys, state codes, counts and
+      # public URLs. Nothing from the coalition plan beyond K links, which
+      # are public recruitment pages.
+
+    residual_human_steps:
+      - "Approve a shrink, i.e. run sweep_apply.py --allow-shrink when the
+         diagnosis shows roles genuinely ended (Rob)."
+      - "Fix or route any upstream break (training payload stale or partial;
+         owner ep-training-map) or a wrong K link (owner: the state, via Izzy)
+         (Rob)."
+
+    escalation:
+      - "Training payload over 36h old: stop, write nothing, name
+         ep-training-map."
+      - "Shrink guard (exit 4): diagnose and report, write nothing further."
+      - "Sheet shape wrong (exit 5), or coalition-plan column K header changed:
+         stop and report. Never add, rename or reorder columns."
+      - "A second validation refusal in one run."
+      - "A K link that points somewhere implausible (another state's site, a
+         non-recruitment page): write the proposal WITHOUT changing the link
+         rule, and flag it for Rob."
+      - "The pytest suite is red."
+
+    do_not_touch:
+      - "Rows whose source isn't sweep (state staff's rows)."
+      - "The Civis job, data/opportunities.json, site/, and the GitHub repo.
+         Publishing belongs to the Civis sync."
+      - "The 'Read me' tab and the Sheet's header row."
+      - "Anything in ep-training-map, ep-training-map-public or the coalition
+         plan sheet."

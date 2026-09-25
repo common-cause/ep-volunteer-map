@@ -130,11 +130,10 @@
 
 /* ---------- map ---------- */
 
-/* Two fills on a dark / near-white lightness ladder, so the map never relies
- * on hue; the panel and tooltips say it in words too.
- *   has opportunities  royal  #222A5F  13.42:1, white label
- *   none               cinder #E7E8F2  11.01:1, royal label
- *   hover/selected     yellow #FFE640  10.64:1, royal label
+/* One fill: every state opens something (its own rows or the default
+ * volunteer item), so there is nothing to encode by colour.
+ *   state           royal  #222A5F  13.42:1, white label
+ *   hover/selected  yellow #FFE640  10.64:1, royal label
  */
 
 #cc-ep-volunteer-map .cevm-stage { position: relative; }
@@ -154,17 +153,17 @@
   transition: fill .12s ease;
 }
 
-#cc-ep-volunteer-map .cevm-st.cevm-has { fill: var(--cevm-royal); }
-#cc-ep-volunteer-map .cevm-st.cevm-none { fill: var(--cevm-cinder); }
+#cc-ep-volunteer-map .cevm-st { fill: var(--cevm-royal); }
 
-#cc-ep-volunteer-map .cevm-st.cevm-has:hover,
+#cc-ep-volunteer-map .cevm-st:hover,
 #cc-ep-volunteer-map .cevm-st.cevm-sel { fill: var(--cevm-hl); }
 
-#cc-ep-volunteer-map .cevm-st.cevm-none:hover { fill: var(--cevm-cloud); }
-
+/* Focus: a yellow fill plus a royal stroke. A royal stroke alone would vanish
+   on the royal fill. */
 #cc-ep-volunteer-map .cevm-st:focus { outline: none; }
 #cc-ep-volunteer-map .cevm-st:focus-visible {
   outline: none;
+  fill: var(--cevm-hl);
   stroke: var(--cevm-royal);
   stroke-width: 2.5;
 }
@@ -184,8 +183,7 @@
   transition: fill .12s ease;
 }
 
-#cc-ep-volunteer-map .cevm-chip.cevm-has rect { fill: var(--cevm-royal); }
-#cc-ep-volunteer-map .cevm-chip.cevm-none rect { fill: var(--cevm-cinder); }
+#cc-ep-volunteer-map .cevm-chip rect { fill: var(--cevm-royal); }
 
 #cc-ep-volunteer-map .cevm-chip text {
   font-family: inherit;
@@ -195,15 +193,13 @@
   pointer-events: none;
 }
 
-#cc-ep-volunteer-map .cevm-chip.cevm-none text { fill: var(--cevm-royal); }
+#cc-ep-volunteer-map .cevm-chip:hover rect,
+#cc-ep-volunteer-map .cevm-chip.cevm-sel rect,
+#cc-ep-volunteer-map .cevm-chip:focus-visible rect { fill: var(--cevm-hl); }
 
-#cc-ep-volunteer-map .cevm-chip.cevm-has:hover rect,
-#cc-ep-volunteer-map .cevm-chip.cevm-sel rect { fill: var(--cevm-hl); }
-
-#cc-ep-volunteer-map .cevm-chip.cevm-has:hover text,
-#cc-ep-volunteer-map .cevm-chip.cevm-sel text { fill: var(--cevm-royal); }
-
-#cc-ep-volunteer-map .cevm-chip.cevm-none:hover rect { fill: var(--cevm-cloud); }
+#cc-ep-volunteer-map .cevm-chip:hover text,
+#cc-ep-volunteer-map .cevm-chip.cevm-sel text,
+#cc-ep-volunteer-map .cevm-chip:focus-visible text { fill: var(--cevm-royal); }
 
 #cc-ep-volunteer-map .cevm-chip:focus { outline: none; }
 #cc-ep-volunteer-map .cevm-chip:focus-visible rect {
@@ -272,12 +268,6 @@
   margin-bottom: .6rem;
 }
 
-#cc-ep-volunteer-map .cevm-empty {
-  margin: 0 0 .8rem;
-  font-size: .9rem;
-  color: var(--cevm-slate);
-}
-
 #cc-ep-volunteer-map .cevm-list {
   list-style: none;
   margin: 0;
@@ -343,39 +333,6 @@
 #cc-ep-volunteer-map .cevm-btn:focus-visible {
   outline: 2px solid var(--cevm-sky);
   outline-offset: 2px;
-}
-
-/* ---------- legend ---------- */
-
-#cc-ep-volunteer-map .cevm-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .35rem 1.1rem;
-  margin: .8rem 0 .35rem;
-}
-
-#cc-ep-volunteer-map .cevm-key {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  font-size: .82rem;
-  color: var(--cevm-slate);
-}
-
-#cc-ep-volunteer-map .cevm-sw {
-  width: .8rem;
-  height: .8rem;
-  border-radius: 4px;
-  display: inline-block;
-  flex: 0 0 auto;
-}
-
-#cc-ep-volunteer-map .cevm-sw.cevm-has { background: var(--cevm-royal); }
-
-/* Cinder against a white page needs its own edge or it reads as nothing. */
-#cc-ep-volunteer-map .cevm-sw.cevm-none {
-  background: var(--cevm-cinder);
-  box-shadow: inset 0 0 0 1px var(--cevm-cloud);
 }
 
 /* ---------- narrow embeds ---------- */

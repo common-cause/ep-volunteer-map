@@ -98,10 +98,6 @@
     }).join("");
   }
 
-  function plural(n, one, many) {
-    return n + " " + (n === 1 ? one : many);
-  }
-
   function el(tag, cls, html) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -151,21 +147,13 @@
 
     function items(code) { return states[code] || []; }
 
-    var withAny = Object.keys(geo).filter(function (c) { return items(c).length; });
-    var total = withAny.reduce(function (n, c) { return n + items(c).length; }, 0);
-
     mount.innerHTML = "";
     mount.classList.add(NS + "-root");
 
     // ---- header
     var head = el("div", NS + "-head");
     head.appendChild(el("h2", NS + "-title", "Volunteer with Election Protection"));
-    head.appendChild(el("p", NS + "-sub",
-      "Find opportunities in your state."
-      + (total
-        ? " <strong>" + plural(total, "opportunity", "opportunities")
-          + "</strong> in <strong>" + plural(withAny.length, "state", "states") + "</strong>."
-        : "")));
+    head.appendChild(el("p", NS + "-sub", "Find opportunities in your state."));
     mount.appendChild(head);
 
     // ---- state picker (precision, and the accessible path on any screen)
@@ -180,8 +168,7 @@
     Object.keys(geo).sort(function (a, b) {
       return geo[a].name.localeCompare(geo[b].name);
     }).forEach(function (code) {
-      var n = items(code).length;
-      var o = el("option", null, esc(geo[code].name) + (n ? " (" + n + ")" : ""));
+      var o = el("option", null, esc(geo[code].name));
       o.value = code;
       select.appendChild(o);
     });
@@ -198,13 +185,10 @@
       "aria-label": "Map of Election Protection volunteer opportunities by state"
     });
 
-    function cls(code) { return items(code).length ? "has" : "none"; }
-
-    function tooltip(code) {
-      var n = items(code).length;
-      return geo[code].name + " — "
-        + (n ? plural(n, "opportunity", "opportunities") : "none listed yet");
-    }
+    // Every state has something to offer: its own rows, or the default
+    // volunteer item (Rob, 2026-09-25). So one fill, no legend, and every
+    // state is a keyboard stop.
+    function tooltip(code) { return geo[code].name; }
 
     var paths = {};
     var gStates = svgEl("g", { class: NS + "-states" });
@@ -212,18 +196,14 @@
     Object.keys(geo).sort().forEach(function (code) {
       var p = svgEl("path", {
         d: geo[code].d,
-        class: NS + "-st " + NS + "-" + cls(code),
-        "data-state": code
+        class: NS + "-st",
+        "data-state": code,
+        tabindex: "0",
+        role: "button"
       });
       var t = svgEl("title", {});
       t.textContent = tooltip(code);
       p.appendChild(t);
-      // Only states with something listed are keyboard stops; the rest stay
-      // reachable through the dropdown, so tab order isn't 51 dead stops.
-      if (items(code).length) {
-        p.setAttribute("tabindex", "0");
-        p.setAttribute("role", "button");
-      }
       gStates.appendChild(p);
       paths[code] = p;
     });
@@ -244,22 +224,19 @@
       }));
 
       var g = svgEl("g", {
-        class: NS + "-chip " + NS + "-" + cls(code),
-        "data-state": code
+        class: NS + "-chip",
+        "data-state": code,
+        tabindex: "0",
+        role: "button"
       });
-      if (items(code).length) {
-        g.setAttribute("tabindex", "0");
-        g.setAttribute("role", "button");
-      }
       g.appendChild(svgEl("rect", {
         x: CHIP.x, y: y, width: CHIP.w, height: CHIP.h, rx: 4
       }));
-      var n = items(code).length;
       var txt = svgEl("text", {
         x: CHIP.x + CHIP.w / 2, y: y + CHIP.h / 2,
         "text-anchor": "middle", "dominant-baseline": "central"
       });
-      txt.textContent = code + (n ? "  " + n : "");
+      txt.textContent = code;
       g.appendChild(txt);
       var ct = svgEl("title", {});
       ct.textContent = tooltip(code);
@@ -275,14 +252,6 @@
     panel.hidden = true;
     stage.appendChild(panel);
     mount.appendChild(stage);
-
-    // ---- legend
-    var legend = el("div", NS + "-legend");
-    [["has", "Opportunities listed"], ["none", "None listed yet"]].forEach(function (pair) {
-      legend.appendChild(el("span", NS + "-key",
-        '<i class="' + NS + "-sw " + NS + "-" + pair[0] + '"></i>' + esc(pair[1])));
-    });
-    mount.appendChild(legend);
 
     // --- Selection ----------------------------------------------------------
 
@@ -325,25 +294,27 @@
       }
     }
 
+    /** The default item for a state with no rows (SPEC Phase 2, Q6 copy).
+     *  PTV is the volunteer front door for every state without its own. A
+     *  state whose coalition-plan recruitment link differs gets a door: row
+     *  from the sweep instead, so it never reaches this fallback. */
+    function defaultItem(name) {
+      return {
+        title: "Election Protection Volunteer",
+        description: "Help make sure every eligible voter in " + name
+          + " can cast their ballot. Sign up to volunteer with Election "
+          + "Protection and we’ll connect you with training and opportunities "
+          + "near you.",
+        link: SIGNUP_URL
+      };
+    }
+
     function buildPanel(code) {
-      var list = items(code);
       var name = geo[code].name;
+      var list = items(code).length ? items(code) : [defaultItem(name)];
       var html = '<button type="button" class="' + NS
         + '-close" aria-label="Close">&times;</button>'
         + '<div class="' + NS + '-pTitle">' + esc(name) + "</div>";
-
-      if (!list.length) {
-        // A primary surface, not an edge case: most states will be here most
-        // of the time. It points to the main signup rather than just "none".
-        html += '<p class="' + NS + '-empty">There are no listed opportunities in '
-          + esc(name) + " right now. You can still sign up to volunteer with "
-          + "Election Protection.</p>"
-          + '<a class="' + NS + '-btn" href="' + SIGNUP_URL + '" target="_top">'
-          + 'Sign up <span aria-hidden="true">&rarr;</span></a>';
-        panel.innerHTML = html;
-        wirePanel();
-        return;
-      }
 
       // Sheet order, deliberately: organizers rank their own list (Rob,
       // 2026-09-25). Don't sort here.

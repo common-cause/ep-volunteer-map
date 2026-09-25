@@ -10,7 +10,8 @@ set -euo pipefail
 
 # Image (civisanalytics/datascience-python) ships python-dotenv; the [sheets]
 # extra brings gspread + google-auth. Pinned to a ccef-connections release
-# tag — bump deliberately when upgrading.
-pip install "ccef-connections[sheets] @ git+https://github.com/common-cause/ccef_connections.git@v0.16.0"
+# tag — bump deliberately when upgrading. tzdata backs zoneinfo in case the
+# image has no system tz database (the "ends" cutoff is America/New_York).
+pip install "ccef-connections[sheets] @ git+https://github.com/common-cause/ccef_connections.git@v0.16.0" tzdata
 
 python app/scripts/sync_opportunities.py --push

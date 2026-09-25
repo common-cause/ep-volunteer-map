@@ -79,6 +79,16 @@ For each state with trainings:
 - **Non-PTV states:** one item per distinct outside role.
 - **`(no role given)`:** infer the role from the training names if it's clear,
   otherwise use "Election Protection Volunteer".
+- **Hub states** (`hub_links` is set: the state's column K link is a
+  Linktree, currently FL). The state listed its own roles, so **the hub
+  replaces the training data for that state.** Make one item per hub link
+  that is a volunteer role someone can sign up for, linking to **that link's
+  own URL**. Take the title from the hub entry, cleaned. Put who it's for
+  ("for Lawyers", "for Clergy, Organizers, Law Students") in the
+  description, not the title. **Skip** hub links that aren't roles, such as a
+  messaging doc, a resources page or a hotline banner. A training-map role
+  with no matching hub link is not added. Say which hub links you skipped
+  and why in `link_choices`.
 - **Blank states whose `k_link` is set** (no trainings, but the state
   submitted a recruitment link, for example AL): one `door:XX:volunteer` item
   with the default title and copy, linking to `k_link`. Blank states without a

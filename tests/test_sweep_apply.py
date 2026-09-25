@@ -109,5 +109,19 @@ def test_shrink_guard():
     assert not a.shrink_refused(a.plan({"rows": []}, current[:3]), current[:3])  # under 4: no guard
 
 
+def test_hub_state_links_to_its_own_hub_links():
+    payload = {"_meta": {}, "states": {"FL": [{"role": "Poll Monitoring", "url": "https://www.mobilize.us/x/event/1"}]}}
+    wl = w.build_worklist(payload, [], {"FL": "https://linktr.ee/fl"},
+                          hubs={"FL": [{"title": "Poll Monitors", "url": "https://www.mobilize.us/x/event/1/"},
+                                       {"title": "Poll Workers", "url": "https://powerthepolls.example/"}]})
+    assert wl["states"]["FL"]["hub_links"]
+    ok = a.validate({"rows": [row("ext:FL:poll-worker", "FL", "https://powerthepolls.example/")]}, wl)
+    assert ok == []
+    # The hub page itself is no longer a valid item link, and nor is anything off it.
+    for bad in ("https://linktr.ee/fl", "https://elsewhere.example/"):
+        assert any("link hub" in e for e in a.validate({"rows": [row("ext:FL:x", "FL", bad)]}, wl))
+    assert w.is_hub("https://linktr.ee/fl") and not w.is_hub("https://protectthevote.net/")
+
+
 def test_col_letter():
     assert [a.col_letter(n) for n in (1, 10, 26, 27)] == ["A", "J", "Z", "AA"]

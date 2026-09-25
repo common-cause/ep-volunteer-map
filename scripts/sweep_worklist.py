@@ -63,6 +63,36 @@ def normalize_link(value) -> str | None:
     return text if is_http_url(text) else None
 
 
+HUB_HOSTS = ("linktr.ee",)
+
+
+def is_hub(url: str | None) -> bool:
+    return bool(url) and host(url) in HUB_HOSTS
+
+
+def fetch_hub_links(url: str) -> list[dict]:
+    """The link list a state published on a Linktree front door.
+
+    Read from the page's embedded __NEXT_DATA__ JSON, which carries the exact
+    URLs, rather than scraped from rendered text. Only http(s) links are kept;
+    headers (e.g. a hotline banner) have no URL and drop out here. The agent
+    decides which of what's left are volunteer roles.
+    """
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (ep-volunteer-map sweep)"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        html = r.read().decode("utf-8", "replace")
+    m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', html, re.S)
+    if not m:
+        raise SystemExit(f"ERROR: {url} has no __NEXT_DATA__; the Linktree page format changed. Stop.")
+    props = json.loads(m.group(1))["props"]["pageProps"]
+    out = []
+    for link in props.get("links") or []:
+        u = as_text(link.get("url"))
+        if is_http_url(u):
+            out.append({"title": as_text(link.get("title")), "url": u})
+    return out
+
+
 def fetch_training_payload() -> dict:
     with urllib.request.urlopen(TRAINING_PAYLOAD_URL, timeout=30) as r:
         return json.loads(r.read().decode("utf-8"))
@@ -90,7 +120,9 @@ def read_sheets(sheet_id: str, tab: str, coalition_id: str) -> tuple[list[dict],
     return rows, k_links
 
 
-def build_worklist(payload: dict, sheet_rows: list[dict], k_links: dict[str, str]) -> dict:
+def build_worklist(payload: dict, sheet_rows: list[dict], k_links: dict[str, str],
+                   hubs: dict[str, list[dict]] | None = None) -> dict:
+    hubs = hubs or {}
     trainings = payload.get("states") or {}
     sweep_rows, staff_keys, staff_states = [], [], set()
     for i, raw in enumerate(sheet_rows):
@@ -131,6 +163,10 @@ def build_worklist(payload: dict, sheet_rows: list[dict], k_links: dict[str, str
             "k_link": k_links.get(code),
             "front_door": front_door,
             "agent_picks_link": bool(items) and front_door is None,
+            # A Linktree front door: the state listed its roles itself. Items
+            # come from these links, each linking to its own URL (Rob,
+            # 2026-09-25, for FL).
+            "hub_links": hubs.get(code),
             "has_staff_rows": code in staff_states,
             "roles": dict(roles),
         }
@@ -164,7 +200,8 @@ def main() -> int:
 
     payload = fetch_training_payload()
     rows, k_links = read_sheets(sheet_id, tab, coalition_id)
-    wl = build_worklist(payload, rows, k_links)
+    hubs = {code: fetch_hub_links(url) for code, url in k_links.items() if is_hub(url)}
+    wl = build_worklist(payload, rows, k_links, hubs)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(wl, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -174,6 +211,8 @@ def main() -> int:
     print(f"  training payload generated_at {wl['_meta']['training_payload_generated_at']}")
     print(f"  states with trainings: {len(with_roles)}  (PTV {sum(s[c]['ptv_state'] for c in with_roles)})")
     print(f"  column K links: {len(k_links)}  ({', '.join(sorted(k_links))})")
+    for code, links in sorted(hubs.items()):
+        print(f"  hub {code}: {len(links)} links on its Linktree")
     print(f"  agent picks link: {', '.join(c for c in with_roles if s[c]['agent_picks_link']) or 'none'}")
     print(f"  current sweep rows: {len(wl['current_sweep_rows'])}; staff-owned keys: {len(wl['staff_owned_keys'])}")
     return 0

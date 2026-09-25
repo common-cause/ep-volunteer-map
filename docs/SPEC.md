@@ -232,6 +232,13 @@ copy), so under the CLAUDE.md routing rule it can't run on Civis. It's a
       Mobilize event with many timeslots, or an organizer's event list.
    4. **The soonest upcoming event,** or the on-demand one, re-picked each run.
    - A blank state with no K link gets `https://protectthevote.net/`.
+   - **Link hubs** (Rob, 2026-09-25, for FL): when a state's column K link is
+     a Linktree, the state has listed its own roles. The hub replaces the
+     training data for that state: one item per role link on the hub, each
+     linking to its own URL. Links that aren't roles (messaging docs, the
+     hotline banner) are skipped. `sweep_worklist.py` reads the hub's exact
+     link list from the page's embedded JSON, and `sweep_apply.py` accepts
+     only those links for that state. FL has 6 items from its hub.
    - Reading the coalition sheet: **columns A (State) and K only.** The tab
      also holds state leads, partners and program notes, and none of that is
      copied, logged or quoted. Its id lives in the local `.env`

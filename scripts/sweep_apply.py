@@ -7,9 +7,11 @@ contract mechanically so a plausible-but-wrong proposal can't slip through:
 
   ownership   touches only rows with source = sweep. A key a human has taken
               over (listed in the worklist's staff_owned_keys) is refused.
-  link rule   a state with a front door (column K, else protectthevote.net for
-              PTV states) must link there. Otherwise the link must be one of
-              that state's own training URLs or share their host.
+  link rule   a state whose column K link is a link hub (Linktree) must link
+              to one of the hub's own links. Otherwise a state with a front
+              door (column K, else protectthevote.net for PTV states) must link
+              there, and a state without one must link to one of its own
+              training URLs or their host.
   content     titles <= 60 chars with no year; descriptions 60-400 chars; no
               email, phone number, or hotline mention; http(s) links only.
   shrink      refuses to disable more than half the currently enabled sweep
@@ -88,7 +90,10 @@ def validate(proposal: dict, worklist: dict) -> list[str]:
             errors.append(f"{where}: link is not http(s)")
             continue
         st = states[code]
-        if st["front_door"]:
+        if st.get("hub_links"):
+            if link not in {h["url"] for h in st["hub_links"]}:
+                errors.append(f"{where}: {code}'s front door is a link hub; link must be one of its links")
+        elif st["front_door"]:
             if link != st["front_door"]:
                 errors.append(f"{where}: {code} has a front door; link must be {st['front_door']}")
         else:

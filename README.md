@@ -5,7 +5,7 @@ The content comes from a Google Sheet that organizers edit (state, title,
 description, get-involved link). A twice-daily job publishes it to GitHub Pages,
 and the map shows each state's opportunities as a list.
 
-**Status:** built, not yet deployed. See [`docs/SPEC.md`](docs/SPEC.md) for
+**Status:** live at https://common-cause.github.io/ep-volunteer-map/ (not yet embedded). See [`docs/SPEC.md`](docs/SPEC.md) for
 decisions and [`docs/wordpress_embed.md`](docs/wordpress_embed.md) for the embed.
 
 ```

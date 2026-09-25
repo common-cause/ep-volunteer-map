@@ -6,21 +6,21 @@ description, get-involved link) in a Google Sheet. A twice-daily Civis job
 publishes them to GitHub Pages, and each state opens a list of its
 opportunities. Requested by Amy (a state ED); owned and signed off by Rob (campaigns).
 
-## Status: BUILT, NOT YET DEPLOYED
+## Status: LIVE (not yet embedded)
 
 **Read `docs/SPEC.md` first**; it records every decision. The repo is
 **public** (org is on GitHub free, so no Pages from private repos), so keep
 the Sheet id and anything row-like out of it.
 
 - `scripts/sync_opportunities.py`: Sheet → `data/opportunities.json` (tests in `tests/`)
-- `civis/`: job body + `SCHEDULED_SCRIPTS.md` (Civis job not yet created)
+- `civis/`: job body + `SCHEDULED_SCRIPTS.md` (the live job's config and its setup quirks)
 - `site/`: the front end; `scripts/build_site.sh` is the publish allowlist,
   used by `.github/workflows/deploy.yml` and for local preview
   (`bash scripts/build_site.sh && python -m http.server -d _site`)
 - `docs/wordpress_embed.md`: the snippet + runbook for the protectthevote.net admin
 
-Remaining: Rob's steps in SPEC.md (workflow scope, PAT, enable Pages), then
-create the Civis job.
+Live: Civis job 370504796 runs 07:00 + 15:00 ET. Remaining: send the embed
+runbook to the protectthevote.net admin; rotate the PAT before 2026-12-24.
 
 ## Shape (from the spec)
 

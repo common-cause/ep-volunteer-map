@@ -1,20 +1,12 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-09-25T18:04:05+00:00",
-    "content_hash": "sha256:af96b7e00305f8d3a00d7f09c80eb5458b50bd3b8bcacefc9b9af484f13cc479",
+    "generated_at": "2026-09-25T18:05:01+00:00",
+    "content_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
     "counts": {
-      "states": 1,
-      "opportunities": 1
+      "states": 0,
+      "opportunities": 0
     }
   },
-  "states": {
-    "OH": [
-      {
-        "title": "TEST — pipeline check (will be removed)",
-        "description": "Placeholder row to verify the Civis sync.",
-        "link": "https://protectthevote.net/"
-      }
-    ]
-  }
+  "states": {}
 }

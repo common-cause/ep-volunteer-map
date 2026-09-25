@@ -1,0 +1,397 @@
+/*
+ * EP Volunteer Map widget styles. Lifted from ep-training-map's embed.css.
+ *
+ * EVERY rule is scoped under #cc-ep-volunteer-map so nothing leaks into the
+ * page shell. chrome.css owns the shell; this file owns the widget.
+ *
+ * BRAND: the ELECTION PROTECTION COALITION, not Common Cause. Tokens are the
+ * coalition's own, from 866ourvote.org's theme, under the `--cevm-` prefix.
+ *   Source of record: ep-tools-home/docs/ep-coalition-style-guide.md
+ *
+ * The palette rules that aren't obvious from the values:
+ *   1. YELLOW IS NEVER A SURFACE. Here it is map hover/selection and the
+ *      panel's top rule, and that is the whole yellow budget.
+ *   2. SKY IS A FILL, NEVER AN INK (2.44:1 on white). On sky the label is
+ *      ROYAL. `--cevm-sea` is the ink version; blue text is always sea.
+ *   3. STEEL IS LARGE-TEXT-ONLY at 3.03:1. Body-size muted copy is slate.
+ *
+ * font-family inherits, so the widget picks up the page's Figtree. The
+ * coalition's Proxima Nova kit is domain-locked and must never be served here.
+ */
+
+#cc-ep-volunteer-map {
+  --cevm-white:  #FFFFFF;
+  --cevm-cinder: #E7E8F2;   /* the shelf, and "none listed" */
+  --cevm-cloud:  #CFD2E6;   /* the default 1px border */
+  --cevm-steel:  #8E93AC;   /* decorative and large text only */
+  --cevm-slate:  #606480;   /* body copy */
+  --cevm-royal:  #222A5F;   /* every heading; primary dark */
+  --cevm-sky:    #3FAFEF;   /* a FILL and a focus ring, never text */
+  --cevm-sea:    #1B7BB3;   /* the ink version of sky: links */
+  --cevm-hl:     #FFE640;   /* hover, selection, the panel rule. Never a surface. */
+  --cevm-line:   #FFFFFF;   /* state borders */
+
+  font-family: inherit;
+  font-weight: 500;         /* the coalition's "regular"; there is no 400 */
+  color: var(--cevm-slate);
+  line-height: 1.5;
+  max-width: 1040px;
+  margin: 0 auto;
+  container-type: inline-size;
+}
+
+#cc-ep-volunteer-map *,
+#cc-ep-volunteer-map *::before,
+#cc-ep-volunteer-map *::after { box-sizing: border-box; }
+
+/* The signature EP detail: 12px, 700, 2px tracking, uppercase. */
+#cc-ep-volunteer-map .cevm-btn,
+#cc-ep-volunteer-map .cevm-ends {
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ---------- header ---------- */
+
+/* Headings are ALWAYS 900 and ALWAYS royal. */
+#cc-ep-volunteer-map .cevm-title {
+  font-size: 1.5rem;
+  line-height: 1.1;
+  font-weight: 900;
+  color: var(--cevm-royal);
+  margin: 0 0 .4rem;
+}
+
+#cc-ep-volunteer-map .cevm-sub {
+  margin: 0 0 1rem;
+  font-size: .95rem;
+  color: var(--cevm-slate);
+  max-width: 62ch;
+}
+
+#cc-ep-volunteer-map .cevm-sub strong {
+  color: var(--cevm-royal);
+  font-weight: 700;
+}
+
+#cc-ep-volunteer-map .cevm-loading,
+#cc-ep-volunteer-map .cevm-error {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--cevm-slate);
+}
+
+#cc-ep-volunteer-map .cevm-error a { color: var(--cevm-sea); font-weight: 700; }
+
+/* ---------- controls ---------- */
+
+#cc-ep-volunteer-map .cevm-controls { margin: 0 0 .85rem; }
+
+#cc-ep-volunteer-map .cevm-select {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: .55rem 2rem .55rem .75rem;
+  border: 1px solid var(--cevm-cloud);
+  border-radius: 4px;              /* controls 4px; cards 5px; slabs 10px */
+  background: var(--cevm-white);
+  color: var(--cevm-royal);
+  min-width: 17rem;
+  max-width: 100%;
+  cursor: pointer;
+  transition: border-color .2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23222A5F' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .7rem center;
+}
+
+#cc-ep-volunteer-map .cevm-select:hover { border-color: var(--cevm-sky); }
+
+#cc-ep-volunteer-map .cevm-select:focus-visible {
+  outline: 2px solid var(--cevm-sky);
+  outline-offset: 2px;
+}
+
+#cc-ep-volunteer-map .cevm-sronly {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- map ---------- */
+
+/* Two fills on a dark / near-white lightness ladder, so the map never relies
+ * on hue; the panel and tooltips say it in words too.
+ *   has opportunities  royal  #222A5F  13.42:1, white label
+ *   none               cinder #E7E8F2  11.01:1, royal label
+ *   hover/selected     yellow #FFE640  10.64:1, royal label
+ */
+
+#cc-ep-volunteer-map .cevm-stage { position: relative; }
+
+#cc-ep-volunteer-map .cevm-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+#cc-ep-volunteer-map .cevm-st {
+  stroke: var(--cevm-line);
+  stroke-width: 1;
+  stroke-linejoin: round;
+  cursor: pointer;
+  transition: fill .12s ease;
+}
+
+#cc-ep-volunteer-map .cevm-st.cevm-has { fill: var(--cevm-royal); }
+#cc-ep-volunteer-map .cevm-st.cevm-none { fill: var(--cevm-cinder); }
+
+#cc-ep-volunteer-map .cevm-st.cevm-has:hover,
+#cc-ep-volunteer-map .cevm-st.cevm-sel { fill: var(--cevm-hl); }
+
+#cc-ep-volunteer-map .cevm-st.cevm-none:hover { fill: var(--cevm-cloud); }
+
+#cc-ep-volunteer-map .cevm-st:focus { outline: none; }
+#cc-ep-volunteer-map .cevm-st:focus-visible {
+  outline: none;
+  stroke: var(--cevm-royal);
+  stroke-width: 2.5;
+}
+
+/* ---------- small-state callouts ---------- */
+
+#cc-ep-volunteer-map .cevm-leader {
+  stroke: var(--cevm-steel);
+  stroke-width: 1;
+}
+
+#cc-ep-volunteer-map .cevm-chip { cursor: pointer; }
+
+#cc-ep-volunteer-map .cevm-chip rect {
+  stroke: var(--cevm-line);
+  stroke-width: 1;
+  transition: fill .12s ease;
+}
+
+#cc-ep-volunteer-map .cevm-chip.cevm-has rect { fill: var(--cevm-royal); }
+#cc-ep-volunteer-map .cevm-chip.cevm-none rect { fill: var(--cevm-cinder); }
+
+#cc-ep-volunteer-map .cevm-chip text {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  fill: var(--cevm-white);
+  pointer-events: none;
+}
+
+#cc-ep-volunteer-map .cevm-chip.cevm-none text { fill: var(--cevm-royal); }
+
+#cc-ep-volunteer-map .cevm-chip.cevm-has:hover rect,
+#cc-ep-volunteer-map .cevm-chip.cevm-sel rect { fill: var(--cevm-hl); }
+
+#cc-ep-volunteer-map .cevm-chip.cevm-has:hover text,
+#cc-ep-volunteer-map .cevm-chip.cevm-sel text { fill: var(--cevm-royal); }
+
+#cc-ep-volunteer-map .cevm-chip.cevm-none:hover rect { fill: var(--cevm-cloud); }
+
+#cc-ep-volunteer-map .cevm-chip:focus { outline: none; }
+#cc-ep-volunteer-map .cevm-chip:focus-visible rect {
+  stroke: var(--cevm-royal);
+  stroke-width: 2.5;
+}
+
+/* ---------- the panel ---------- */
+
+/* The one shadow (the style guide's "elevated element" token). The yellow top
+   rule ties the panel to the state you just turned yellow. */
+#cc-ep-volunteer-map .cevm-panel {
+  position: absolute;
+  z-index: 5;
+  width: min(23rem, 88%);
+  max-height: 86%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--cevm-white);
+  border: 1px solid var(--cevm-cloud);
+  border-top: 4px solid var(--cevm-hl);
+  border-radius: 5px;
+  box-shadow: 0 12px 32px rgba(122, 126, 153, .25);
+  padding: .9rem 1rem 1rem;
+}
+
+/* Docked form for narrow embeds, where a floating bubble can't work. */
+#cc-ep-volunteer-map .cevm-panel.cevm-sheet {
+  position: relative;
+  left: auto !important;
+  top: auto !important;
+  width: 100%;
+  max-height: none;
+  margin-top: .75rem;
+  box-shadow: none;
+}
+
+#cc-ep-volunteer-map .cevm-close {
+  float: right;
+  margin: -.35rem -.4rem 0 .5rem;
+  background: none;
+  border: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--cevm-slate);
+  cursor: pointer;
+  padding: .1rem .3rem;
+  border-radius: 4px;
+}
+
+#cc-ep-volunteer-map .cevm-close:hover {
+  background: var(--cevm-cinder);
+  color: var(--cevm-royal);
+}
+
+#cc-ep-volunteer-map .cevm-close:focus-visible {
+  outline: 2px solid var(--cevm-sky);
+  outline-offset: 2px;
+}
+
+#cc-ep-volunteer-map .cevm-pTitle {
+  font-size: 1.1875rem;
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--cevm-royal);
+  margin-bottom: .6rem;
+}
+
+#cc-ep-volunteer-map .cevm-empty {
+  margin: 0 0 .8rem;
+  font-size: .9rem;
+  color: var(--cevm-slate);
+}
+
+#cc-ep-volunteer-map .cevm-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#cc-ep-volunteer-map .cevm-item {
+  padding: .85rem 0;
+  border-top: 1px solid var(--cevm-cloud);
+}
+
+#cc-ep-volunteer-map .cevm-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+#cc-ep-volunteer-map .cevm-oName {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--cevm-royal);
+  margin-bottom: .3rem;
+}
+
+#cc-ep-volunteer-map .cevm-ends {
+  font-size: .68rem;
+  letter-spacing: 1.5px;
+  color: var(--cevm-slate);
+  margin-bottom: .4rem;
+}
+
+#cc-ep-volunteer-map .cevm-desc {
+  font-size: .9rem;
+  color: var(--cevm-slate);
+  margin-bottom: .6rem;
+  overflow-wrap: anywhere;   /* a pasted long URL must not widen the panel */
+}
+
+#cc-ep-volunteer-map .cevm-desc p { margin: 0 0 .5rem; }
+#cc-ep-volunteer-map .cevm-desc p:last-child { margin-bottom: 0; }
+
+/* `.btn--sky`, the coalition's primary button, with its royal label. */
+#cc-ep-volunteer-map .cevm-btn {
+  display: inline-block;
+  background: var(--cevm-sky);
+  color: var(--cevm-royal);
+  border: 1px solid var(--cevm-sky);
+  border-radius: 4px;
+  padding: .55rem .9rem;
+  text-align: center;
+  transition: background-color .25s ease-in-out, border-color .25s ease-in-out,
+              color .25s ease-in-out;
+}
+
+#cc-ep-volunteer-map .cevm-btn:hover,
+#cc-ep-volunteer-map .cevm-btn:focus {
+  background: var(--cevm-royal);
+  border-color: var(--cevm-royal);
+  color: var(--cevm-white);
+  text-decoration: none;
+}
+
+#cc-ep-volunteer-map .cevm-btn:focus-visible {
+  outline: 2px solid var(--cevm-sky);
+  outline-offset: 2px;
+}
+
+/* ---------- legend ---------- */
+
+#cc-ep-volunteer-map .cevm-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1.1rem;
+  margin: .8rem 0 .35rem;
+}
+
+#cc-ep-volunteer-map .cevm-key {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .82rem;
+  color: var(--cevm-slate);
+}
+
+#cc-ep-volunteer-map .cevm-sw {
+  width: .8rem;
+  height: .8rem;
+  border-radius: 4px;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+#cc-ep-volunteer-map .cevm-sw.cevm-has { background: var(--cevm-royal); }
+
+/* Cinder against a white page needs its own edge or it reads as nothing. */
+#cc-ep-volunteer-map .cevm-sw.cevm-none {
+  background: var(--cevm-cinder);
+  box-shadow: inset 0 0 0 1px var(--cevm-cloud);
+}
+
+/* ---------- narrow embeds ---------- */
+/* Container queries: respond to the WIDGET's width, not the viewport's. */
+
+@container (max-width: 560px) {
+  #cc-ep-volunteer-map .cevm-title { font-size: 1.25rem; }
+  #cc-ep-volunteer-map .cevm-select { min-width: 0; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #cc-ep-volunteer-map .cevm-st,
+  #cc-ep-volunteer-map .cevm-chip rect,
+  #cc-ep-volunteer-map .cevm-btn { transition: none; }
+}
+
+@media print {
+  #cc-ep-volunteer-map .cevm-panel { position: relative; box-shadow: none; }
+}

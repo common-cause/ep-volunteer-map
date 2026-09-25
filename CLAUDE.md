@@ -6,13 +6,21 @@ description, get-involved link) in a Google Sheet. A twice-daily Civis job
 publishes them to GitHub Pages, and each state opens a list of its
 opportunities. Requested by Amy (a state ED); owned and signed off by Rob (campaigns).
 
-## Status: SPEC SETTLED, READY TO BUILD
+## Status: BUILT, NOT YET DEPLOYED
 
-Nothing is built. **Read `docs/SPEC.md` first.** It records every decision
-(all eight questions answered 2026-09-25) and what to lift from which sibling
-project. The Sheet exists; the repo is **public** (org is on GitHub free, so
-no Pages from private repos), so keep the Sheet id and anything row-like out
-of it.
+**Read `docs/SPEC.md` first**; it records every decision. The repo is
+**public** (org is on GitHub free, so no Pages from private repos), so keep
+the Sheet id and anything row-like out of it.
+
+- `scripts/sync_opportunities.py`: Sheet → `data/opportunities.json` (tests in `tests/`)
+- `civis/`: job body + `SCHEDULED_SCRIPTS.md` (Civis job not yet created)
+- `site/`: the front end; `scripts/build_site.sh` is the publish allowlist,
+  used by `.github/workflows/deploy.yml` and for local preview
+  (`bash scripts/build_site.sh && python -m http.server -d _site`)
+- `docs/wordpress_embed.md`: the snippet + runbook for the protectthevote.net admin
+
+Remaining: Rob's steps in SPEC.md (workflow scope, PAT, enable Pages), then
+create the Civis job.
 
 ## Shape (from the spec)
 

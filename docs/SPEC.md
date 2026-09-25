@@ -1,7 +1,7 @@
 # ep-volunteer-map — project spec
 
-**Status:** spec settled (all open questions answered 2026-09-25); nothing
-built yet. · **Written:** 2026-09-25, in the
+**Status:** spec settled (all open questions answered 2026-09-25); sync and
+front end built 2026-09-25, not yet deployed. · **Written:** 2026-09-25, in the
 meta-project, from Rob's brief. · **Requested by:** Amy (a state ED, not
 national program staff). **Owner and sign-off:** Rob (campaigns). Amy's input
 is welcome, but she doesn't have final approval over copy or behaviour.

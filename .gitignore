@@ -9,3 +9,4 @@ inbox/
 !.env.example
 .venv
 __pycache__/
+_site/

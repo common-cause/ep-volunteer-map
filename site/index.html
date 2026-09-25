@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Volunteer Opportunities &middot; Election Protection</title>
+  <!-- PUBLIC PAGE. Served by GitHub Pages from common-cause/ep-volunteer-map
+       and iframed on protectthevote.net. The content is an organizer-edited
+       Google Sheet, synced by scripts/sync_opportunities.py. noindex keeps the
+       bare iframe page out of search; the host page is what should rank. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.png" sizes="any" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preload" href="fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="chrome.css" />
+  <link rel="stylesheet" href="embed.css" />
+</head>
+<body class="site-page">
+  <main class="site-main">
+    <div id="cc-ep-volunteer-map"
+         data-api="opportunities.json"
+         data-geo="us-states.json"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Election Protection coalition &middot; operated by Common Cause
+      &middot; <a href="https://866ourvote.org" target="_top">866ourvote.org</a>
+    </p>
+  </footer>
+
+  <script src="embed.js"></script>
+</body>
+</html>

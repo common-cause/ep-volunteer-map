@@ -1,12 +1,226 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-09-25T18:05:01+00:00",
-    "content_hash": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "generated_at": "2026-09-25T19:57:11+00:00",
+    "content_hash": "sha256:612c09316abab7c3be5bb0e59ee3e76ed2483903a242e8903e24f5e66ffe38c5",
     "counts": {
-      "states": 0,
-      "opportunities": 0
+      "states": 24,
+      "opportunities": 33
     }
   },
-  "states": {}
+  "states": {
+    "AL": [
+      {
+        "title": "Election Protection Volunteer",
+        "description": "Help make sure every eligible voter in Alabama can cast their ballot. Sign up to volunteer with Election Protection and we'll connect you with training and opportunities near you.",
+        "link": "https://alabama-forward.solidarity.tech/get-on-the-field-quiz"
+      }
+    ],
+    "AZ": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online, in person, or on demand.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "CA": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
+        "link": "https://form.jotform.com/262247622007047"
+      }
+    ],
+    "FL": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with many sessions to choose from.",
+        "link": "https://linktr.ee/helpfloridavoters"
+      },
+      {
+        "title": "Legal Observer",
+        "description": "Bring your legal background to the polls during early voting, observing how voting is going and helping flag problems so they can be addressed quickly. Training is live online.",
+        "link": "https://linktr.ee/helpfloridavoters"
+      }
+    ],
+    "GA": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Field Captain",
+        "description": "Support a team of poll monitors in your area, helping them get where they need to be and making sure problems at the polls get reported. Training is live online.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "IL": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "KY": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
+        "link": "https://secure.lglforms.com/form_engine/s/XSYrx-8-LsV10NYE45HGWQ?t=1764091888"
+      }
+    ],
+    "MA": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "MD": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "MI": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a single polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or on demand.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Roving Poll Monitor",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is available live online or on demand.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "MN": [
+      {
+        "title": "Roving Poll Monitor",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is live online.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Election Ambassador",
+        "description": "Help voters understand their rights and how to cast their ballot, as a trusted source of accurate election information. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Count Observer",
+        "description": "After the polls close, observe how ballots are handled and counted, and report anything that looks wrong. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "NC": [
+      {
+        "title": "Canvass Monitor",
+        "description": "After the election, attend county canvass meetings where results are reviewed and certified, and report anything that looks wrong. Training is live online.",
+        "link": "https://www.mobilize.us/commoncause/event/1042004"
+      }
+    ],
+    "ND": [
+      {
+        "title": "Election Observer",
+        "description": "Observe the voting process at the polls and help report problems so every eligible voter can cast their ballot. Training is live online.",
+        "link": "https://www.lwvnd.org/elections/election-observation"
+      }
+    ],
+    "NE": [
+      {
+        "title": "Poll Watcher",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "NV": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
+        "link": "https://secure.ngpvan.com/wr9d0W03FUG3QWz_5vhV_Q2"
+      }
+    ],
+    "NY": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is held in person.",
+        "link": "https://airtable.com/apppq20xuoHn6h5Nr/shrlplCJFZ8um4zO3"
+      }
+    ],
+    "OH": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "OR": [
+      {
+        "title": "Election Monitor",
+        "description": "Help monitor the general election in your community, watching for problems that could keep people from casting their ballot and reporting them quickly. Training is on demand, with some in-person sessions.",
+        "link": "https://act.commoncause.org/forms/join-our-election-protection-team?source=direct_link&"
+      },
+      {
+        "title": "Trusted Messenger",
+        "description": "Share accurate, nonpartisan information about how to vote with people in your community, so they have what they need to cast their ballot. Training is on demand.",
+        "link": "https://act.commoncause.org/forms/join-our-election-protection-team?source=direct_link&"
+      }
+    ],
+    "PA": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with many sessions to choose from.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "RI": [
+      {
+        "title": "Stationary Poll Monitor",
+        "description": "Spend a shift at one polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Roving Poll Monitor",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Early Voting Monitor",
+        "description": "Monitor early voting sites in the days before the election, helping voters and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "TX": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person, with many sessions to choose from.",
+        "link": "https://www.mobilize.us/commoncause/event/995221"
+      }
+    ],
+    "UT": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Roving Poll Monitor",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "VA": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
+        "link": "https://www.protectthevoteva.org/"
+      }
+    ],
+    "WI": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "link": "https://www.mobilize.us/commoncause/event/1044103"
+      }
+    ]
+  }
 }

@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-09-25T19:57:11+00:00",
-    "content_hash": "sha256:612c09316abab7c3be5bb0e59ee3e76ed2483903a242e8903e24f5e66ffe38c5",
+    "generated_at": "2026-09-25T20:05:25+00:00",
+    "content_hash": "sha256:a864742b792896a3522a9de068299431c79c6bd0cbffdcda0fd93867d8b87261",
     "counts": {
       "states": 24,
-      "opportunities": 33
+      "opportunities": 37
     }
   },
   "states": {
@@ -33,13 +33,33 @@
     "FL": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with many sessions to choose from.",
-        "link": "https://linktr.ee/helpfloridavoters"
+        "description": "Help voters at the polls and watch for voter suppression or other problems that could keep people from casting their ballot. Open to anyone; training is live online, with many sessions to choose from.",
+        "link": "https://www.mobilize.us/commoncause/event/975203/"
       },
       {
         "title": "Legal Observer",
-        "description": "Bring your legal background to the polls during early voting, observing how voting is going and helping flag problems so they can be addressed quickly. Training is live online.",
-        "link": "https://linktr.ee/helpfloridavoters"
+        "description": "Observe early voting sites and help flag problems so they can be addressed quickly. Open to clergy, organizers and law students; training is live online.",
+        "link": "https://www.mobilize.us/commoncause/event/999059"
+      },
+      {
+        "title": "Poll Worker",
+        "description": "Work at a polling place in your county, helping run a fair and safe election for your neighbors. Poll workers are hired and trained by local election officials.",
+        "link": "https://www.powerthepolls.org"
+      },
+      {
+        "title": "Canvassing Board Monitor",
+        "description": "Observe county canvassing board meetings where ballots are reviewed and votes are counted, and report anything that looks wrong. Open to anyone.",
+        "link": "https://docs.google.com/forms/d/e/1FAIpQLSeBduyrA6nOxjFyqWZu4X1KDITn4oq4YD6LYKE2nGSNC6TUVw/viewform"
+      },
+      {
+        "title": "Voting Rights Legal Monitor",
+        "description": "Lawyers can serve as legal monitors at the polls on Election Day, helping resolve problems on the spot so eligible voters can cast their ballot.",
+        "link": "https://wetheaction.org/projects/3469-voting-rights-legal-monitor-aug-18-or-nov-3rd"
+      },
+      {
+        "title": "Canvassing Board Legal Monitor",
+        "description": "Lawyers can monitor county canvassing board proceedings as ballots are reviewed and counted, helping make sure every valid vote is counted.",
+        "link": "https://wetheaction.org/projects/2696-florida-canvassing-board-legal-monitors"
       }
     ],
     "GA": [

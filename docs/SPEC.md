@@ -93,8 +93,10 @@ the moment it exists.
    that everything entered is published on a public national map; that notice
    is the control. It lives in a first-position `Read me` tab, so the sync
    must open the `Opportunities` tab **by name**, never "first tab". If the
-   column set changes, update `Read me` too. The sync still escapes all text for HTML and still enforces
-   http(s)-only links (safety, not content policy).
+   column set changes, update `Read me` too. Safety (not content policy) still
+   applies: the sync stores plain text and enforces http(s)-only links, and
+   the front end renders all Sheet text as text (`textContent`), never as HTML,
+   and re-checks link schemes.
 5. ~~Public repo or private?~~ Settled (Rob, 2026-09-25): **public**. The org
    is on GitHub's free plan, which has no Pages for private repos; siblings
    dynamic-action-map and ep-training-map-public are public for the same

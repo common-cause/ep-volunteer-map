@@ -29,8 +29,10 @@
 # the grant.
 #
 # NO GRANT IS CLAIMED HERE. Only Rob grants a tier (meta projects_index.yaml).
-# Until then the roster computes dispatchable: false, which is the correct
-# resting state. The FIRST RUN is done interactively with Rob, who reviews the
+#   >> GRANTED tier 2 on 2026-09-25 (Rob, in session, after reviewing the
+#   >> first run). Roster regenerated; the tower dry run passed every gate.
+#   >> Vehicle task ENABLED the same day; first fire 2026-09-26 06:00.
+#   >> If the grant is withdrawn, disable the task too. The FIRST RUN is done interactively with Rob, who reviews the
 # rows before the first Civis publish (SPEC Q4); that is a residual-step run,
 # not a dispatch.
 # =============================================================================

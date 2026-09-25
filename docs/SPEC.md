@@ -135,8 +135,10 @@ adding `deploy.yml`, Rob runs `gh auth refresh -h github.com -s workflow`.
 
 ## Rob's steps
 
-- `gh auth refresh -s workflow` (above).
-- Mint the PAT once the repo is ready to receive pushes, and put it in the
-  meta `.env` and in Civis.
-- Enable Pages (source: GitHub Actions) after the first deploy.
-- Send the protectthevote.net admin the embed runbook.
+- ~~`gh auth refresh -s workflow`~~ Done 2026-09-25 (via a fresh
+  `gh auth login`; refresh failed because gh had the account under its old
+  name, `common-cause`, since renamed `rkerth-cc`).
+- ~~Enable Pages~~ Done 2026-09-25 (`build_type=workflow`); live at
+  https://common-cause.github.io/ep-volunteer-map/.
+- Mint the PAT and put it in the meta `.env` and in Civis.
+- Send the protectthevote.net admin `docs/wordpress_embed.md`.

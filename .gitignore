@@ -10,3 +10,4 @@ inbox/
 .venv
 __pycache__/
 _site/
+logs/

@@ -144,8 +144,13 @@
 
   function render(geo, data) {
     var states = (data && data.states) || {};
+    // The Sheet's "No program here" tab: drawn blank, with no panel and no
+    // default item, and left out of the picker (Rob, 2026-09-25).
+    var noProgram = {};
+    ((data && data.no_program) || []).forEach(function (c) { noProgram[c] = true; });
 
     function items(code) { return states[code] || []; }
+    function open(code) { return !!geo[code] && !noProgram[code]; }
 
     mount.innerHTML = "";
     mount.classList.add(NS + "-root");
@@ -167,7 +172,7 @@
     select.appendChild(opt0);
     Object.keys(geo).sort(function (a, b) {
       return geo[a].name.localeCompare(geo[b].name);
-    }).forEach(function (code) {
+    }).filter(open).forEach(function (code) {
       var o = el("option", null, esc(geo[code].name));
       o.value = code;
       select.appendChild(o);
@@ -185,21 +190,24 @@
       "aria-label": "Map of Election Protection volunteer opportunities by state"
     });
 
-    // Every state has something to offer: its own rows, or the default
+    // Every open state has something to offer: its own rows, or the default
     // volunteer item (Rob, 2026-09-25). So one fill, no legend, and every
-    // state is a keyboard stop.
+    // open state is a keyboard stop. A no-program state is a blank shape.
     function tooltip(code) { return geo[code].name; }
 
     var paths = {};
     var gStates = svgEl("g", { class: NS + "-states" });
     // Draw in a stable order so focus order is alphabetical, not file order.
     Object.keys(geo).sort().forEach(function (code) {
-      var p = svgEl("path", {
+      var p = svgEl("path", open(code) ? {
         d: geo[code].d,
         class: NS + "-st",
         "data-state": code,
         tabindex: "0",
         role: "button"
+      } : {
+        d: geo[code].d,
+        class: NS + "-st " + NS + "-off"
       });
       var t = svgEl("title", {});
       t.textContent = tooltip(code);
@@ -223,11 +231,13 @@
         x1: cx, y1: cy, x2: CHIP.x - 4, y2: y + CHIP.h / 2
       }));
 
-      var g = svgEl("g", {
+      var g = svgEl("g", open(code) ? {
         class: NS + "-chip",
         "data-state": code,
         tabindex: "0",
         role: "button"
+      } : {
+        class: NS + "-chip " + NS + "-off"
       });
       g.appendChild(svgEl("rect", {
         x: CHIP.x, y: y, width: CHIP.w, height: CHIP.h, rx: 4
@@ -277,7 +287,7 @@
     }
 
     function selectState(code, viaKeyboard) {
-      if (!geo[code]) return;
+      if (!open(code)) return;
       selected = code;
       clearSelection();
       if (paths[code]) paths[code].classList.add(NS + "-sel");
@@ -459,7 +469,7 @@
     var initial = /[?&]state=([A-Za-z]{2})\b/.exec(window.location.search);
     if (initial) {
       var code0 = initial[1].toUpperCase();
-      if (geo[code0]) selectState(code0, false);
+      selectState(code0, false);
     }
   }
 })();

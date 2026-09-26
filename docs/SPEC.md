@@ -75,6 +75,15 @@ the moment it exists.
   service account is fileOrganizer, so the sync can read it. Header row written (the columns
   above, plus the two editor columns). Organizers outside campaigns-g need
   editor access granted on the file itself.
+- **"No program here" tab** (Rob, 2026-09-25): one `state` column (plus an
+  unpublished notes column). A listed state is drawn **blank**: a grey shape,
+  not clickable, left out of the picker, with no panel, no PTV default and no
+  deep link. It outranks the Opportunities tab (that state's rows drop with a
+  warning), and the sweep may write nothing for it (`sweep_apply.py` refuses).
+  The tab is required: if it's missing or loses its `state` header, the sync
+  publishes nothing, so those states can't quietly revert to the PTV default.
+  Seeded with CT, DE, ID, OK, SD, VT, WV, WY. The payload carries it as a
+  top-level `no_program` list.
 
 ## Questions (all eight settled with Rob, 2026-09-25)
 

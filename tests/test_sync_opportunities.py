@@ -134,7 +134,30 @@ def test_hash_ignores_generated_at_and_tracks_content():
     assert a["_meta"]["content_hash"] == b["_meta"]["content_hash"]
     c = s.build_payload(build(row(Title="changed")), "x")
     assert c["_meta"]["content_hash"] != a["_meta"]["content_hash"]
-    assert a["_meta"]["counts"] == {"states": 1, "opportunities": 1}
+    assert a["_meta"]["counts"] == {"states": 1, "opportunities": 1, "no_program": 0}
+
+
+def test_no_program_tab_parsed_and_sorted(capsys):
+    rows = [{"State": "Wyoming"}, {"State": "id"}, {"State": ""}, {"State": "WY"}, {"State": "Narnia"}]
+    assert s.build_no_program(rows) == ["ID", "WY"]
+    assert "unknown state" in capsys.readouterr().err
+
+
+def test_no_program_wins_over_opportunity_rows(capsys):
+    out = s.build_states([row(State="VT"), row()], TODAY, ["VT"])
+    assert list(out) == ["OH"]
+    assert "No program here" in capsys.readouterr().err
+
+
+def test_no_program_in_payload_and_hash():
+    states = build(row())
+    plain = s.build_payload(states, "x")
+    listed = s.build_payload(states, "x", ["WV"])
+    assert listed["no_program"] == ["WV"] and plain["no_program"] == []
+    # Listing a state changes the page, so the run must publish.
+    assert listed["_meta"]["content_hash"] != plain["_meta"]["content_hash"]
+    # An empty tab hashes as before, so shipping this didn't force a republish.
+    assert plain["_meta"]["content_hash"] == s.content_hash(states)
 
 
 def test_expiry_changes_hash_so_the_dropping_run_publishes():

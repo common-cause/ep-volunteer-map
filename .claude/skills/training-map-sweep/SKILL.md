@@ -64,6 +64,12 @@ override the rules below.
 A key in `staff_owned_keys` means a human owns **that role**. Don't recreate
 the role under a different slug either.
 
+**`no_program: true`** means the state is on the Sheet's "No program here"
+tab. Write **nothing** for it: no role items, no door item, even if it has
+trainings or a K link. The map draws it blank, and the apply script refuses
+its rows. If its trainings look real, say so in the report; Rob decides
+whether it comes off the tab.
+
 For each state with trainings:
 
 - **One item per distinct role.** Different raw strings for the same job are

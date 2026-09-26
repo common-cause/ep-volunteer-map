@@ -38,6 +38,16 @@ def test_worklist_front_doors():
     assert worklist()["staff_owned_keys"] == ["ext:OH:taken"]
 
 
+def test_no_program_state_gets_no_sweep_rows():
+    wl = w.build_worklist({"_meta": {}, "states": {
+        "WV": [{"role": "Poll Monitor", "url": "https://www.mobilize.us/wv/event/1"}]}},
+        [], {"WV": "https://wv.example.org/"}, no_program=["WV"])
+    assert wl["states"]["WV"]["no_program"] and not wl["states"]["OH"]["no_program"]
+    for r in (row("ext:WV:poll-monitor", "WV", "https://wv.example.org/"),
+              row("door:WV:volunteer", "WV", "https://wv.example.org/")):
+        assert any("No program here" in e for e in a.validate({"rows": [r]}, wl))
+
+
 def test_normalize_link():
     assert w.normalize_link("protectthevote.net") == "https://protectthevote.net/"
     assert w.normalize_link("https://protectthevote.net") == "https://protectthevote.net/"

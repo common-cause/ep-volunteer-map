@@ -28,6 +28,12 @@ Sheet schema (row 1, headers case-insensitive; see docs/SPEC.md):
 Any other column (e.g. "last updated", "updated by") is ignored: the output is
 an allowlist, so a column added to the Sheet later never reaches the page.
 
+"No program here" tab (Rob, 2026-09-25): one `state` column. Each state listed
+there is drawn blank on the map, with no panel, no default PTV item, nothing.
+It outranks the Opportunities tab: that state's rows are dropped with a
+warning. A missing tab or `state` header publishes nothing, since otherwise
+those states would silently fall back to the PTV default.
+
 Everything in the Sheet is published on a public page. There is deliberately no
 content filter (Rob, 2026-09-25); the Sheet's "Read me" tab says so. Text is
 stored as plain text, and the front end must render it as text, never as HTML.
@@ -52,6 +58,7 @@ OUTPUT_REPO_PATH = "data/opportunities.json"  # Path inside the GitHub repo
 GITHUB_CREDENTIAL_NAME = "EP_VOLUNTEER_MAP_GITHUB_PAT"
 DEFAULT_REPO = "common-cause/ep-volunteer-map"
 DEFAULT_TAB = "Opportunities"
+NO_PROGRAM_TAB = "No program here"
 EASTERN = ZoneInfo("America/New_York")
 SCHEMA_VERSION = 1
 
@@ -209,31 +216,54 @@ def check_headers(headers: list[str]) -> list[str]:
     return [c for c in REQUIRED_COLUMNS if c not in have]
 
 
-def build_states(rows: list[dict], today: date) -> dict[str, list[dict]]:
+def build_no_program(rows: list[dict]) -> list[str]:
+    """Sorted USPS codes from the "No program here" tab."""
+    codes = set()
+    for i, raw in enumerate(rows):
+        state_raw = as_text(normalize_row(raw).get("state"))
+        if not state_raw:
+            continue
+        code = parse_state(state_raw)
+        if code:
+            codes.add(code)
+        else:
+            print(f"  WARN: {NO_PROGRAM_TAB} row {i + 2}: unknown state {state_raw[:40]!r} — skipping.",
+                  file=sys.stderr)
+    return sorted(codes)
+
+
+def build_states(rows: list[dict], today: date, no_program: list[str] = ()) -> dict[str, list[dict]]:
     """``{USPS: [opportunity, ...]}``, states sorted, each list in Sheet order."""
     states: dict[str, list[dict]] = {}
     for i, raw in enumerate(rows):
         result = validate_row(normalize_row(raw), row_num=i + 2, today=today)
         if result:
             state, opp = result
+            if state in no_program:
+                warn(i + 2, f"{state} is on the '{NO_PROGRAM_TAB}' tab, which wins")
+                continue
             states.setdefault(state, []).append(opp)
     return dict(sorted(states.items()))
 
 
-def content_hash(states: dict) -> str:
-    canonical = json.dumps(states, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+def content_hash(states: dict, no_program: list[str] = ()) -> str:
+    content = {"states": states, "no_program": list(no_program)} if no_program else states
+    canonical = json.dumps(content, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
     return "sha256:" + hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
-def build_payload(states: dict, generated_at: str) -> dict:
+def build_payload(states: dict, generated_at: str, no_program: list[str] = ()) -> dict:
     return {
         "_meta": {
             "schema_version": SCHEMA_VERSION,
             "generated_at": generated_at,
-            "content_hash": content_hash(states),
-            "counts": {"states": len(states), "opportunities": sum(len(v) for v in states.values())},
+            "content_hash": content_hash(states, no_program),
+            "counts": {"states": len(states), "opportunities": sum(len(v) for v in states.values()),
+                       "no_program": len(no_program)},
         },
         "states": states,
+        # Drawn blank on the map: no panel, no default item (Rob, 2026-09-25).
+        "no_program": list(no_program),
     }
 
 
@@ -257,14 +287,23 @@ def write_atomic(data: bytes) -> None:
     os.replace(tmp, OUTPUT_JSON)
 
 
-def read_sheet(sheet_id: str, tab: str) -> tuple[list[str], list[dict]]:
+def read_sheet(sheet_id: str, tab: str) -> tuple[list[str], list[dict], list[str] | None, list[dict]]:
+    """Opportunities headers + rows, then "No program here" headers (None if the tab is gone) + rows."""
     from ccef_connections import SheetsConnector
+    from gspread.exceptions import WorksheetNotFound
 
     with SheetsConnector() as conn:
-        ws = conn.get_spreadsheet(sheet_id).worksheet(tab)
+        book = conn.get_spreadsheet(sheet_id)
+        ws = book.worksheet(tab)
         headers = ws.row_values(1)
         rows = ws.get_all_records() if headers else []
-    return headers, rows
+        try:
+            np_ws = book.worksheet(NO_PROGRAM_TAB)
+        except WorksheetNotFound:
+            return headers, rows, None, []
+        np_headers = np_ws.row_values(1)
+        np_rows = np_ws.get_all_records() if np_headers else []
+    return headers, rows, np_headers, np_rows
 
 
 def publish_to_github(data: bytes, repo: str) -> str | None:
@@ -300,19 +339,25 @@ def main() -> int:
         return 2
 
     print(f"Reading tab '{tab}' ...")
-    headers, rows = read_sheet(sheet_id, tab)
+    headers, rows, np_headers, np_rows = read_sheet(sheet_id, tab)
     missing = check_headers(headers)
     if missing:
         # A renamed header would otherwise publish an empty map. Keep the last good one.
         print(f"ERROR: tab '{tab}' is missing required column(s): {', '.join(missing)}. Nothing published.", file=sys.stderr)
         return 3
+    # Likewise a renamed tab would silently put the PTV default back on those states.
+    if np_headers is None or "state" not in {str(h).strip().lower() for h in np_headers}:
+        print(f"ERROR: tab '{NO_PROGRAM_TAB}' is missing or has no 'state' column. Nothing published.", file=sys.stderr)
+        return 3
     print(f"  {len(rows)} rows")
 
     today = datetime.now(EASTERN).date()
-    states = build_states(rows, today)
-    data = build_payload(states, datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    no_program = build_no_program(np_rows)
+    states = build_states(rows, today, no_program)
+    data = build_payload(states, datetime.now(timezone.utc).isoformat(timespec="seconds"), no_program)
     counts = data["_meta"]["counts"]
     print(f"  {counts['opportunities']} opportunities in {counts['states']} states (as of {today}, Eastern)")
+    print(f"  no program here: {', '.join(no_program) or 'none'}")
 
     if args.dry_run:
         print("Dry run — not writing.")

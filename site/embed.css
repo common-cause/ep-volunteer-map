@@ -168,6 +168,11 @@
   stroke-width: 2.5;
 }
 
+/* "No program here" (Rob, 2026-09-25): a blank shape. Cinder, the old "none
+   listed" fill, with no hover, no pointer and no panel. */
+#cc-ep-volunteer-map .cevm-st.cevm-off,
+#cc-ep-volunteer-map .cevm-st.cevm-off:hover { fill: var(--cevm-cinder); cursor: default; }
+
 /* ---------- small-state callouts ---------- */
 
 #cc-ep-volunteer-map .cevm-leader {
@@ -200,6 +205,13 @@
 #cc-ep-volunteer-map .cevm-chip:hover text,
 #cc-ep-volunteer-map .cevm-chip.cevm-sel text,
 #cc-ep-volunteer-map .cevm-chip:focus-visible text { fill: var(--cevm-royal); }
+
+/* Slate on cinder is 5.3:1, enough for the 15px bold label. */
+#cc-ep-volunteer-map .cevm-chip.cevm-off { cursor: default; }
+#cc-ep-volunteer-map .cevm-chip.cevm-off rect,
+#cc-ep-volunteer-map .cevm-chip.cevm-off:hover rect { fill: var(--cevm-cinder); }
+#cc-ep-volunteer-map .cevm-chip.cevm-off text,
+#cc-ep-volunteer-map .cevm-chip.cevm-off:hover text { fill: var(--cevm-slate); }
 
 #cc-ep-volunteer-map .cevm-chip:focus { outline: none; }
 #cc-ep-volunteer-map .cevm-chip:focus-visible rect {

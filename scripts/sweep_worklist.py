@@ -35,7 +35,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from sync_opportunities import STATES, is_http_url, normalize_row, parse_state, as_text  # noqa: E402
+from sync_opportunities import (  # noqa: E402
+    NO_PROGRAM_TAB, STATES, as_text, build_no_program, is_http_url, normalize_row, parse_state)
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 OUT = REPO_ROOT / "tmp" / "sweep" / "worklist.json"
@@ -98,11 +99,15 @@ def fetch_training_payload() -> dict:
         return json.loads(r.read().decode("utf-8"))
 
 
-def read_sheets(sheet_id: str, tab: str, coalition_id: str) -> tuple[list[dict], dict[str, str]]:
+def read_sheets(sheet_id: str, tab: str, coalition_id: str) -> tuple[list[dict], dict[str, str], list[str]]:
     from ccef_connections import SheetsConnector
 
     with SheetsConnector() as conn:
-        rows = conn.get_spreadsheet(sheet_id).worksheet(tab).get_all_records()
+        book = conn.get_spreadsheet(sheet_id)
+        rows = book.worksheet(tab).get_all_records()
+        # A missing tab raises here: without it the sweep can't tell which
+        # states must stay blank, so it stops rather than guess.
+        no_program = build_no_program(book.worksheet(NO_PROGRAM_TAB).get_all_records())
         ws = conn.get_spreadsheet(coalition_id).worksheet(COALITION_TAB)
         # Two columns, fetched separately so no other column is ever requested.
         col_a = ws.col_values(1)
@@ -117,11 +122,12 @@ def read_sheets(sheet_id: str, tab: str, coalition_id: str) -> tuple[list[dict],
         link = normalize_link(col_k[i] if i < len(col_k) else "")
         if code and link:
             k_links[code] = link
-    return rows, k_links
+    return rows, k_links, no_program
 
 
 def build_worklist(payload: dict, sheet_rows: list[dict], k_links: dict[str, str],
-                   hubs: dict[str, list[dict]] | None = None) -> dict:
+                   hubs: dict[str, list[dict]] | None = None,
+                   no_program: list[str] = ()) -> dict:
     hubs = hubs or {}
     trainings = payload.get("states") or {}
     sweep_rows, staff_keys, staff_states = [], [], set()
@@ -167,6 +173,9 @@ def build_worklist(payload: dict, sheet_rows: list[dict], k_links: dict[str, str
             # come from these links, each linking to its own URL (Rob,
             # 2026-09-25, for FL).
             "hub_links": hubs.get(code),
+            # Listed on the Sheet's "No program here" tab: the map draws it
+            # blank, and the sweep writes nothing for it (Rob, 2026-09-25).
+            "no_program": code in no_program,
             "has_staff_rows": code in staff_states,
             "roles": dict(roles),
         }
@@ -199,9 +208,10 @@ def main() -> int:
         return 2
 
     payload = fetch_training_payload()
-    rows, k_links = read_sheets(sheet_id, tab, coalition_id)
-    hubs = {code: fetch_hub_links(url) for code, url in k_links.items() if is_hub(url)}
-    wl = build_worklist(payload, rows, k_links, hubs)
+    rows, k_links, no_program = read_sheets(sheet_id, tab, coalition_id)
+    hubs = {code: fetch_hub_links(url) for code, url in k_links.items()
+            if is_hub(url) and code not in no_program}
+    wl = build_worklist(payload, rows, k_links, hubs, no_program)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(wl, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -213,7 +223,8 @@ def main() -> int:
     print(f"  column K links: {len(k_links)}  ({', '.join(sorted(k_links))})")
     for code, links in sorted(hubs.items()):
         print(f"  hub {code}: {len(links)} links on its Linktree")
-    print(f"  agent picks link: {', '.join(c for c in with_roles if s[c]['agent_picks_link']) or 'none'}")
+    print(f"  no program here (sweep writes nothing): {', '.join(no_program) or 'none'}")
+    print(f"  agent picks link:{', '.join(c for c in with_roles if s[c]['agent_picks_link']) or 'none'}")
     print(f"  current sweep rows: {len(wl['current_sweep_rows'])}; staff-owned keys: {len(wl['staff_owned_keys'])}")
     return 0
 

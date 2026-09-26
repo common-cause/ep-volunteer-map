@@ -7,6 +7,7 @@ contract mechanically so a plausible-but-wrong proposal can't slip through:
 
   ownership   touches only rows with source = sweep. A key a human has taken
               over (listed in the worklist's staff_owned_keys) is refused.
+  no program  no row for a state on the Sheet's "No program here" tab.
   link rule   a state whose column K link is a link hub (Linktree) must link
               to one of the hub's own links. Otherwise a state with a front
               door (column K, else protectthevote.net for PTV states) must link
@@ -75,6 +76,9 @@ def validate(proposal: dict, worklist: dict) -> list[str]:
             errors.append(f"{where}: key is staff-owned; the sweep may not recreate it")
         if code not in STATES or as_text(r.get("state")) != code:
             errors.append(f"{where}: state must be the USPS code in the key ({code})")
+            continue
+        if states[code].get("no_program"):
+            errors.append(f"{where}: {code} is on the 'No program here' tab; the sweep writes nothing for it")
             continue
         title, desc, link = (as_text(r.get(f)) for f in ("title", "description", "link"))
         if not title or len(title) > 60 or YEAR_RE.search(title):

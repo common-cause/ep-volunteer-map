@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-09-26T19:01:28+00:00",
-    "content_hash": "sha256:67c873089e68f96dfd8e778e23fd81036aef4cefcdbde850f9fa4b6148ca232f",
+    "generated_at": "2026-09-27T19:01:51+00:00",
+    "content_hash": "sha256:c4787526f946e9576a35ae0e789935f314e04af682f53b00a63e77a5da27e9ed",
     "counts": {
-      "states": 27,
-      "opportunities": 38
+      "states": 26,
+      "opportunities": 37
     }
   },
   "states": {
@@ -121,13 +121,6 @@
         "link": "https://protectthevote.net/"
       }
     ],
-    "MN": [
-      {
-        "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is live online.",
-        "link": "https://protectthevote.net/"
-      }
-    ],
     "NC": [
       {
         "title": "Canvass Monitor",
@@ -165,8 +158,8 @@
     ],
     "NY": [
       {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "title": "Election Protection Volunteer",
+        "description": "Help make sure every eligible voter in New York can cast their ballot. Sign up to volunteer with Election Protection and we'll connect you with training and opportunities near you.",
         "link": "https://airtable.com/apppq20xuoHn6h5Nr/shrlplCJFZ8um4zO3"
       }
     ],

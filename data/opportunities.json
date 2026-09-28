@@ -1,11 +1,12 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-09-27T19:01:51+00:00",
-    "content_hash": "sha256:c4787526f946e9576a35ae0e789935f314e04af682f53b00a63e77a5da27e9ed",
+    "generated_at": "2026-09-28T15:01:57+00:00",
+    "content_hash": "sha256:18f99f520a93a4fad4a56e21295fe7c2c8daf74e143212ad214fb2868b476b03",
     "counts": {
       "states": 26,
-      "opportunities": 37
+      "opportunities": 37,
+      "no_program": 8
     }
   },
   "states": {
@@ -246,5 +247,15 @@
         "link": "https://www.mobilize.us/commoncause/event/1044103"
       }
     ]
-  }
+  },
+  "no_program": [
+    "CT",
+    "DE",
+    "ID",
+    "OK",
+    "SD",
+    "VT",
+    "WV",
+    "WY"
+  ]
 }

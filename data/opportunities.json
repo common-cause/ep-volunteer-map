@@ -1,8 +1,8 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-09-28T15:01:57+00:00",
-    "content_hash": "sha256:18f99f520a93a4fad4a56e21295fe7c2c8daf74e143212ad214fb2868b476b03",
+    "generated_at": "2026-09-28T19:02:11+00:00",
+    "content_hash": "sha256:8ba95ba72b10252f6974911a6b29c1c07d790ebe1d50c4dcb4eb51254f1959b5",
     "counts": {
       "states": 26,
       "opportunities": 37,
@@ -159,8 +159,8 @@
     ],
     "NY": [
       {
-        "title": "Election Protection Volunteer",
-        "description": "Help make sure every eligible voter in New York can cast their ballot. Sign up to volunteer with Election Protection and we'll connect you with training and opportunities near you.",
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is in person.",
         "link": "https://airtable.com/apppq20xuoHn6h5Nr/shrlplCJFZ8um4zO3"
       }
     ],

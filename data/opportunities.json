@@ -1,12 +1,12 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-09-28T19:02:11+00:00",
-    "content_hash": "sha256:8ba95ba72b10252f6974911a6b29c1c07d790ebe1d50c4dcb4eb51254f1959b5",
+    "generated_at": "2026-09-29T11:02:55+00:00",
+    "content_hash": "sha256:507ae0b365d676c6484db2f11eba8fffcac9a3ff715c6957c1477a1ab84fbb9c",
     "counts": {
       "states": 26,
       "opportunities": 37,
-      "no_program": 8
+      "no_program": 9
     }
   },
   "states": {
@@ -249,6 +249,7 @@
     ]
   },
   "no_program": [
+    "AK",
     "CT",
     "DE",
     "ID",

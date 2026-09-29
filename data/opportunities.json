@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-09-29T11:02:55+00:00",
-    "content_hash": "sha256:507ae0b365d676c6484db2f11eba8fffcac9a3ff715c6957c1477a1ab84fbb9c",
+    "generated_at": "2026-09-29T19:01:54+00:00",
+    "content_hash": "sha256:53a8a328ca85199106f7a6f1846231369633135399de09ecded8687a0139ecca",
     "counts": {
-      "states": 26,
-      "opportunities": 37,
+      "states": 27,
+      "opportunities": 40,
       "no_program": 9
     }
   },
@@ -110,6 +110,13 @@
         "link": "https://protectthevote.net/"
       }
     ],
+    "ME": [
+      {
+        "title": "Election Protection Volunteer",
+        "description": "Help make sure every eligible voter in Maine can cast their ballot. Sign up to volunteer with Election Protection and we'll connect you with training and opportunities near you.",
+        "link": "https://www.lwvme.org/form/2026-november-election-observer"
+      }
+    ],
     "MI": [
       {
         "title": "Poll Monitor",
@@ -127,6 +134,11 @@
         "title": "Canvass Monitor",
         "description": "After the election, attend county canvass meetings where results are reviewed and certified, and report anything that looks wrong. Training is live online.",
         "link": "https://www.mobilize.us/commoncause/event/1042004"
+      },
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "link": "https://protectthevote.net/"
       }
     ],
     "ND": [
@@ -161,14 +173,14 @@
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is in person.",
-        "link": "https://airtable.com/apppq20xuoHn6h5Nr/shrlplCJFZ8um4zO3"
+        "link": "https://protectthevote.net/"
       }
     ],
     "OH": [
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
-        "link": "https://protectthevote.net/"
+        "link": "https://www.mobilize.us/ovrc/event/994676/"
       }
     ],
     "OR": [
@@ -218,7 +230,12 @@
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person, with many sessions to choose from.",
-        "link": "https://www.mobilize.us/commoncause/event/995221"
+        "link": "https://www.mobilize.us/commoncause/event/995221/"
+      },
+      {
+        "title": "Legal Monitor",
+        "description": "Serve as a legal monitor at the polls, helping resolve problems on the spot so every eligible voter in Texas can cast their ballot.",
+        "link": "https://link.txcivilrights.org/LM26"
       }
     ],
     "UT": [

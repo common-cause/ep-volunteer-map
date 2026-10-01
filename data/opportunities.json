@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-09-29T19:01:54+00:00",
-    "content_hash": "sha256:53a8a328ca85199106f7a6f1846231369633135399de09ecded8687a0139ecca",
+    "generated_at": "2026-10-01T11:02:30+00:00",
+    "content_hash": "sha256:496647e84b844cf2fd5857ef47d7b2e001ebed105a13f1479c6f0728f3959609",
     "counts": {
-      "states": 27,
-      "opportunities": 40,
+      "states": 26,
+      "opportunities": 41,
       "no_program": 9
     }
   },
@@ -141,13 +141,6 @@
         "link": "https://protectthevote.net/"
       }
     ],
-    "ND": [
-      {
-        "title": "Election Observer",
-        "description": "Observe the voting process at the polls and help report problems so every eligible voter can cast their ballot. Training is live online.",
-        "link": "https://www.lwvnd.org/elections/election-observation"
-      }
-    ],
     "NE": [
       {
         "title": "Poll Watcher",
@@ -200,6 +193,11 @@
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with many sessions to choose from.",
         "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Legal Monitor",
+        "description": "Serve as a legal monitor at the polls, helping resolve problems on the spot so every eligible voter in Pennsylvania can cast their ballot.",
+        "link": "https://wetheaction.org/projects/3584-serve-as-a-pennsylvania-election-protection-legal-monitor"
       }
     ],
     "RI": [
@@ -252,16 +250,21 @@
     ],
     "VA": [
       {
-        "title": "Poll Monitor",
+        "title": "Voter Advocate",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
         "link": "https://www.protectthevoteva.org/"
+      },
+      {
+        "title": "Legal Advocate",
+        "description": "Use your legal training to help resolve problems voters run into at the polls, so every eligible voter in Virginia can cast their ballot.",
+        "link": "https://www.protectthevoteva.org/legal-advocate"
       }
     ],
     "WI": [
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
-        "link": "https://www.mobilize.us/commoncause/event/1044103"
+        "link": "https://protectthevote.net/"
       }
     ]
   },

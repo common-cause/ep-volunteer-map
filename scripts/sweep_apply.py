@@ -61,6 +61,7 @@ def validate(proposal: dict, worklist: dict) -> list[str]:
     staff = set(worklist.get("staff_owned_keys") or [])
     states = worklist["states"]
     seen = set()
+    hub_used = {}
     for i, r in enumerate(proposal.get("rows") or []):
         key = as_text(r.get("key"))
         where = f"proposal row {i} ({key or 'no key'})"
@@ -97,6 +98,14 @@ def validate(proposal: dict, worklist: dict) -> list[str]:
         if st.get("hub_links"):
             if link not in {h["url"] for h in st["hub_links"]}:
                 errors.append(f"{where}: {code}'s front door is a link hub; link must be one of its links")
+            # One item per hub link. Two roles on one link means a role was
+            # relinked to a sibling's URL (PA legal monitor -> PA poll monitor,
+            # 2026-10-02), which membership alone can't catch.
+            elif (code, link) in hub_used:
+                errors.append(f"{where}: {code} hub link already used by {hub_used[(code, link)]}; "
+                              "each hub link is one role")
+            else:
+                hub_used[(code, link)] = key
         elif st["front_door"]:
             if link != st["front_door"]:
                 errors.append(f"{where}: {code} has a front door; link must be {st['front_door']}")

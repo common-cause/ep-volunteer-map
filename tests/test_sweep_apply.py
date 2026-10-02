@@ -133,5 +133,20 @@ def test_hub_state_links_to_its_own_hub_links():
     assert w.is_hub("https://linktr.ee/fl") and not w.is_hub("https://protectthevote.net/")
 
 
+
+def test_hub_link_is_one_role():
+    # Relinking one role to a sibling's hub URL passes membership but not this
+    # (PA legal monitor -> PA poll monitor, 2026-10-02).
+    payload = {"_meta": {}, "states": {"FL": [{"role": "Poll Monitoring", "url": "https://www.mobilize.us/x/event/1"}]}}
+    wl = w.build_worklist(payload, [], {"FL": "https://linktr.ee/fl"},
+                          hubs={"FL": [{"title": "Poll Monitors", "url": "https://www.mobilize.us/x/event/1/"},
+                                       {"title": "Poll Workers", "url": "https://powerthepolls.example/"}]})
+    assert a.validate({"rows": [row("ext:FL:poll-monitor", "FL", "https://www.mobilize.us/x/event/1/"),
+                                row("ext:FL:poll-worker", "FL", "https://powerthepolls.example/")]}, wl) == []
+    assert any("already used" in e for e in a.validate({"rows": [
+        row("ext:FL:poll-monitor", "FL", "https://www.mobilize.us/x/event/1/"),
+        row("ext:FL:poll-worker", "FL", "https://www.mobilize.us/x/event/1/")]}, wl))
+
+
 def test_col_letter():
     assert [a.col_letter(n) for n in (1, 10, 26, 27)] == ["A", "J", "Z", "AA"]

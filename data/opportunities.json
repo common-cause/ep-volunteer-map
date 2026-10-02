@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-01T11:02:30+00:00",
-    "content_hash": "sha256:496647e84b844cf2fd5857ef47d7b2e001ebed105a13f1479c6f0728f3959609",
+    "generated_at": "2026-10-02T19:01:40+00:00",
+    "content_hash": "sha256:e20b531410d063398733b56fb24047ee75be0e5b479dae5f26a18dd966480653",
     "counts": {
       "states": 26,
-      "opportunities": 41,
+      "opportunities": 42,
       "no_program": 9
     }
   },
@@ -85,7 +85,12 @@
     "IN": [
       {
         "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is available live online or in person, with several sessions to choose from.",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is in person.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Voter Advocate",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person, with several sessions to choose from.",
         "link": "https://protectthevote.net/"
       }
     ],
@@ -240,12 +245,12 @@
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
-        "link": "https://protectthevote.net/"
+        "link": "https://protectthevote.net/?source=acluut"
       },
       {
         "title": "Roving Poll Monitor",
         "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
-        "link": "https://protectthevote.net/"
+        "link": "https://protectthevote.net/?source=acluut"
       }
     ],
     "VA": [

@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-03T11:02:09+00:00",
-    "content_hash": "sha256:106b2dc1d71d0672eb1a9461e4316bdcfc123d7960c87ca56a82bb70fdf38aeb",
+    "generated_at": "2026-10-05T19:02:40+00:00",
+    "content_hash": "sha256:13cb01ea1989966bbaf666b0eecbeb6c4674707967629f5b6ae7a40323693c38",
     "counts": {
-      "states": 29,
-      "opportunities": 46,
+      "states": 30,
+      "opportunities": 47,
       "no_program": 9
     }
   },
@@ -99,6 +99,13 @@
         "title": "Voter Advocate",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person, with several sessions to choose from.",
         "link": "https://protectthevote.net/"
+      }
+    ],
+    "KS": [
+      {
+        "title": "Election Protection Volunteer",
+        "description": "Help make sure every eligible voter in Kansas can cast their ballot. Sign up to volunteer with Election Protection and we'll connect you with training and opportunities near you.",
+        "link": "https://secure.ngpvan.com/SaEvvfp1qkmRWywXSnXqOg2"
       }
     ],
     "KY": [

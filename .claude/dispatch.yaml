@@ -50,16 +50,9 @@ status:
   # grant in the meta catalog, and the Task Scheduler vehicle stays disabled
   # until then.
   freezes: []
-  in_flight:
-    - "SKIP TWO MN ROLES THIS CYCLE (Rob, 2026-09-25). Minnesota is
-       unpublishing two PTV trainings: 'Minnesota Election Protection Legal
-       Volunteer Training' (role string 'Election Protection Volunteer 2024')
-       and 'Student Legal Training' (role 'Student Volunteer'). While either
-       is still in the training payload, do NOT create an item for it under
-       any key, and don't fold it into another MN item. Name it in the report
-       as skipped per this note. REMOVE this note once both have left the
-       payload; after that, a reappearance is a new role and is treated
-       normally."
+  # The 2026-09-25 MN skip note was removed 2026-10-05: both MN trainings had
+  # left the payload (sweep report req-ep-volunteer-map-training-map-sweep-20261005).
+  in_flight: []
 
 notes:
   - "Run from the repo root against the project venv (.venv/Scripts/python.exe)."

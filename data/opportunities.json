@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-06T11:02:10+00:00",
-    "content_hash": "sha256:1861c0a5ea6108ab081e3943d1cab3f7ac0edccd26106c6ee50bb479f8fd4faa",
+    "generated_at": "2026-10-07T11:02:02+00:00",
+    "content_hash": "sha256:ce035c9f0ef3669a814fadad9a867e726d39d8c96586b764fb926cb16c8214a2",
     "counts": {
       "states": 30,
-      "opportunities": 47,
+      "opportunities": 46,
       "no_program": 9
     }
   },
@@ -90,11 +90,6 @@
       }
     ],
     "IN": [
-      {
-        "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is in person.",
-        "link": "https://protectthevote.net/"
-      },
       {
         "title": "Voter Advocate",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person, with several sessions to choose from.",

@@ -1,8 +1,8 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-07T11:02:02+00:00",
-    "content_hash": "sha256:ce035c9f0ef3669a814fadad9a867e726d39d8c96586b764fb926cb16c8214a2",
+    "generated_at": "2026-10-08T11:02:18+00:00",
+    "content_hash": "sha256:717d7a37efe72069f47280bbd660f31efb15964f3b3a4d48ce9498c7135abaf8",
     "counts": {
       "states": 30,
       "opportunities": 46,
@@ -192,7 +192,7 @@
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
-        "link": "https://secure.ngpvan.com/jB-UvSy0ZUO2dlngAkusOg2"
+        "link": "https://secure.ngpvan.com/wr9d0W03FUG3QWz_5vhV_Q2"
       }
     ],
     "NY": [

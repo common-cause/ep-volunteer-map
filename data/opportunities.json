@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-09T19:01:40+00:00",
-    "content_hash": "sha256:f5e3971d71a78f21bb92d1dccd264298b83806480074c4f2de0d6f606353bc30",
+    "generated_at": "2026-10-14T19:01:39+00:00",
+    "content_hash": "sha256:b34561e23b590de727187d91592ca57ff289b9e0e941b3a63161e0374aaf3535",
     "counts": {
-      "states": 31,
-      "opportunities": 49,
+      "states": 29,
+      "opportunities": 48,
       "no_program": 9
     }
   },
@@ -93,6 +93,11 @@
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Poll Watcher",
+        "description": "Watch the voting process at a polling place as a poll watcher, and report problems that could keep people from casting their ballot so they can be fixed quickly. Training is live online.",
         "link": "https://protectthevote.net/"
       }
     ],
@@ -199,14 +204,7 @@
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
-        "link": "https://secure.ngpvan.com/wr9d0W03FUG3QWz_5vhV_Q2"
-      }
-    ],
-    "NY": [
-      {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is in person.",
-        "link": "https://protectthevote.net/"
+        "link": "https://secure.ngpvan.com/nFf7rNsYSU-3xPv683o8YA2"
       }
     ],
     "OH": [
@@ -255,13 +253,6 @@
         "title": "Early Voting Monitor",
         "description": "Monitor early voting sites in the days before the election, helping voters and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
-      }
-    ],
-    "TN": [
-      {
-        "title": "Poll Observer",
-        "description": "Observe voting at a polling place and report problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
-        "link": "https://www.mobilize.us/organizetn/event/1013621/"
       }
     ],
     "TX": [

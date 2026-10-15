@@ -1,12 +1,12 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-14T19:01:39+00:00",
-    "content_hash": "sha256:b34561e23b590de727187d91592ca57ff289b9e0e941b3a63161e0374aaf3535",
+    "generated_at": "2026-10-15T11:02:32+00:00",
+    "content_hash": "sha256:e3124236897fcd11aab12f918d2b99a385fd3d1eaefb8af2b22c3275a481c4ec",
     "counts": {
-      "states": 29,
-      "opportunities": 48,
-      "no_program": 9
+      "states": 30,
+      "opportunities": 49,
+      "no_program": 8
     }
   },
   "states": {
@@ -204,7 +204,7 @@
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
-        "link": "https://secure.ngpvan.com/nFf7rNsYSU-3xPv683o8YA2"
+        "link": "https://secure.ngpvan.com/-TIaXqUfx0KreEjSU_UNXQ2"
       }
     ],
     "OH": [
@@ -253,6 +253,13 @@
         "title": "Early Voting Monitor",
         "description": "Monitor early voting sites in the days before the election, helping voters and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
+      }
+    ],
+    "SD": [
+      {
+        "title": "Election Observer",
+        "description": "Election observers will play a crucial role in monitoring polling places for issues affecting voters, ensuring there is no voter disenfranchisement, and tracking any problems that can be fixed for future elections. Observers need to be available for at least a two-hour shift on Election Day, November 3. Trainings are in person in Aberdeen, Sioux Falls and Rapid City.",
+        "link": "https://www.aclusd.org/event/election-observer-trainings-2/"
       }
     ],
     "TX": [
@@ -315,7 +322,6 @@
     "DE",
     "ID",
     "OK",
-    "SD",
     "VT",
     "WV",
     "WY"

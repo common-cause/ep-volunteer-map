@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-15T19:03:17+00:00",
-    "content_hash": "sha256:02a21921ae9105f393784d01013d9264a51ec7c5fe10d27034fb7ddda2fa709e",
+    "generated_at": "2026-10-16T11:02:17+00:00",
+    "content_hash": "sha256:543a6162f79144f47096677a15a7f1508aebea517d675546187c563876d970f0",
     "counts": {
-      "states": 29,
-      "opportunities": 48,
+      "states": 30,
+      "opportunities": 49,
       "no_program": 8
     }
   },
@@ -56,11 +56,6 @@
         "title": "Voting Rights Legal Monitor",
         "description": "Lawyers can serve as legal monitors at the polls on Election Day, helping resolve problems on the spot so eligible voters can cast their ballot.",
         "link": "https://wetheaction.org/projects/3469-voting-rights-legal-monitor-aug-18-or-nov-3rd"
-      },
-      {
-        "title": "Canvassing Board Legal Monitor",
-        "description": "Lawyers can monitor county canvassing board proceedings as ballots are reviewed and counted, helping make sure every valid vote is counted.",
-        "link": "https://wetheaction.org/projects/2696-florida-canvassing-board-legal-monitors"
       }
     ],
     "GA": [
@@ -148,6 +143,13 @@
         "link": "https://protectthevote.net/"
       }
     ],
+    "MN": [
+      {
+        "title": "Roving Poll Monitor",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is live online, with on-demand modules you can complete on your own schedule.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
     "MO": [
       {
         "title": "Poll Monitor",
@@ -157,6 +159,11 @@
       {
         "title": "Roving Poll Monitor",
         "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Legal Volunteer",
+        "description": "Attorneys, law students and paralegals can put their legal skills to work protecting voters, helping resolve problems at the polls as they come up. Training is in person.",
         "link": "https://protectthevote.net/"
       }
     ],
@@ -190,14 +197,14 @@
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
-        "link": "https://form.jotform.com/261031950202038"
+        "link": "https://form.jotform.com/261031950202039"
       }
     ],
     "NV": [
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
-        "link": "https://secure.ngpvan.com/-TIaXqUfx0KreEjSU_UNXQ2"
+        "link": "https://secure.ngpvan.com/-xUpFkCDXkWMKEO0D2AZaA2"
       }
     ],
     "OH": [

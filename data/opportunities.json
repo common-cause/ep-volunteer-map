@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-16T19:02:39+00:00",
-    "content_hash": "sha256:3ff24c407cf49f6f238a8faf4a7078efe43aee8a6c8eb3bc189257a6a96262d2",
+    "generated_at": "2026-10-17T11:02:01+00:00",
+    "content_hash": "sha256:f2eaff0fd43ea16f1d6a14e343a30c2805cac08360eddd3fed7b190240e4a85d",
     "counts": {
       "states": 31,
-      "opportunities": 49,
+      "opportunities": 50,
       "no_program": 8
     }
   },
@@ -159,6 +159,11 @@
       {
         "title": "Roving Poll Monitor",
         "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Legal Volunteer",
+        "description": "Attorneys, law students and paralegals can put their legal skills to work protecting voters, helping resolve problems at the polls as they come up. Training is in person.",
         "link": "https://protectthevote.net/"
       }
     ],

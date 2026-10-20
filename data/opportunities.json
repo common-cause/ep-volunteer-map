@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-17T11:02:01+00:00",
-    "content_hash": "sha256:f2eaff0fd43ea16f1d6a14e343a30c2805cac08360eddd3fed7b190240e4a85d",
+    "generated_at": "2026-10-20T19:02:05+00:00",
+    "content_hash": "sha256:e4c151f3a5d3291c068799a3be59dae33b526c63445f858dd8b83486166a292d",
     "counts": {
       "states": 31,
-      "opportunities": 50,
+      "opportunities": 52,
       "no_program": 8
     }
   },
@@ -28,6 +28,11 @@
       {
         "title": "Colorado Nonpartisan Election Protection Volunteer Training",
         "description": "Become a Nonpartisan Volunteer Poll Monitor for the 2026 November election",
+        "link": "https://airtable.com/appHWQXrXbkSqzwGn/pagJuz8E39VQo2zEI/form"
+      },
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
         "link": "https://airtable.com/appHWQXrXbkSqzwGn/pagJuz8E39VQo2zEI/form"
       }
     ],
@@ -59,11 +64,6 @@
       }
     ],
     "GA": [
-      {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
-        "link": "https://protectthevote.net/"
-      },
       {
         "title": "Field Captain",
         "description": "Support a team of poll monitors in your area, helping them get where they need to be and making sure problems at the polls get reported. Training is live online.",
@@ -113,14 +113,14 @@
     "MA": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
         "link": "https://protectthevote.net/"
       }
     ],
     "MD": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or on demand.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
       }
     ],
@@ -134,43 +134,43 @@
     "MI": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a single polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or on demand.",
-        "link": "https://protectthevote.net/"
-      },
-      {
-        "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is available live online or on demand.",
-        "link": "https://protectthevote.net/"
-      }
-    ],
-    "MN": [
-      {
-        "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is live online, with on-demand modules you can complete on your own schedule.",
-        "link": "https://protectthevote.net/"
-      }
-    ],
-    "MO": [
-      {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
+        "description": "Spend a shift at a single polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
       },
       {
         "title": "Roving Poll Monitor",
         "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
+      }
+    ],
+    "MN": [
+      {
+        "title": "Roving Poll Monitor",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
+    "MO": [
+      {
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available in person or on demand.",
+        "link": "https://protectthevote.net/"
+      },
+      {
+        "title": "Roving Poll Monitor",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is available in person or on demand.",
+        "link": "https://protectthevote.net/"
       },
       {
         "title": "Legal Volunteer",
-        "description": "Attorneys, law students and paralegals can put their legal skills to work protecting voters, helping resolve problems at the polls as they come up. Training is in person.",
+        "description": "Attorneys, law students and paralegals can put their legal skills to work protecting voters, helping resolve problems at the polls as they come up. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
       }
     ],
     "MT": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or on demand.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://docs.google.com/forms/d/e/1FAIpQLSeu-0t_GTQ09pfFRsFlfqJvu0GQPw6MbV6T-ou9wZQlpbRMVQ/viewform"
       }
     ],
@@ -224,7 +224,7 @@
     "OR": [
       {
         "title": "Election Monitor",
-        "description": "Help monitor the general election in your community, watching for problems that could keep people from casting their ballot and reporting them quickly. Training is on demand, with some in-person sessions.",
+        "description": "Help monitor the general election in your community, watching for problems that could keep people from casting their ballot and reporting them quickly. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://act.commoncause.org/forms/join-our-election-protection-team?source=direct_link&"
       },
       {
@@ -267,6 +267,11 @@
         "title": "Election Observer",
         "description": "Election observers will play a crucial role in monitoring polling places for issues affecting voters, ensuring there is no voter disenfranchisement, and tracking any problems that can be fixed for future elections. Observers need to be available for at least a two-hour shift on Election Day, November 3. Trainings are in person in Aberdeen, Sioux Falls and Rapid City.",
         "link": "https://www.aclusd.org/event/election-observer-trainings-2/"
+      },
+      {
+        "title": "Election Observer",
+        "description": "Observe at a polling place on Election Day, helping voters and watching for problems that could keep people from casting their ballot. Training is in person.",
+        "link": "https://action.aclu.org/webform/sd-rapidcity-election-observer"
       }
     ],
     "TX": [
@@ -300,6 +305,11 @@
       {
         "title": "Roving Poll Monitor",
         "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/?source=acluut"
+      },
+      {
+        "title": "Sign Collector",
+        "description": "Help Utah's Election Protection team document the signs posted at polling places, so voters get clear and accurate information about how and where to vote. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/?source=acluut"
       }
     ],

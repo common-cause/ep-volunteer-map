@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-20T19:02:05+00:00",
-    "content_hash": "sha256:e4c151f3a5d3291c068799a3be59dae33b526c63445f858dd8b83486166a292d",
+    "generated_at": "2026-10-21T11:02:08+00:00",
+    "content_hash": "sha256:9e34367b9d5686a04bb3c5e9b5254586bbe8bb9651f1071a8c930ff76b67c84c",
     "counts": {
-      "states": 31,
-      "opportunities": 52,
+      "states": 32,
+      "opportunities": 53,
       "no_program": 8
     }
   },
@@ -77,6 +77,13 @@
         "link": "https://www.mobilize.us/commoncause/event/1059798"
       }
     ],
+    "IA": [
+      {
+        "title": "Roving Poll Monitor",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is live online, with several sessions to choose from.",
+        "link": "https://protectthevote.net/"
+      }
+    ],
     "IL": [
       {
         "title": "Poll Monitor",
@@ -146,7 +153,7 @@
     "MN": [
       {
         "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is available live online or on demand.",
         "link": "https://protectthevote.net/"
       }
     ],
@@ -328,7 +335,7 @@
     "WI": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
       }
     ]

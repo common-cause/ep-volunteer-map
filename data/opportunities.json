@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-21T11:02:08+00:00",
-    "content_hash": "sha256:9e34367b9d5686a04bb3c5e9b5254586bbe8bb9651f1071a8c930ff76b67c84c",
+    "generated_at": "2026-10-21T19:01:43+00:00",
+    "content_hash": "sha256:d44a693134f655f9e2e6c8b3390ff8a00da0e353d6dbd523a689e84ab296c92a",
     "counts": {
       "states": 32,
-      "opportunities": 53,
+      "opportunities": 52,
       "no_program": 8
     }
   },
@@ -88,11 +88,6 @@
       {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
-        "link": "https://protectthevote.net/"
-      },
-      {
-        "title": "Poll Watcher",
-        "description": "Watch the voting process at a polling place as a poll watcher, and report problems that could keep people from casting their ballot so they can be fixed quickly. Training is live online.",
         "link": "https://protectthevote.net/"
       }
     ],

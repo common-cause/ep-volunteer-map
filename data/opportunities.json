@@ -1,8 +1,8 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-21T19:01:43+00:00",
-    "content_hash": "sha256:d44a693134f655f9e2e6c8b3390ff8a00da0e353d6dbd523a689e84ab296c92a",
+    "generated_at": "2026-10-22T11:02:35+00:00",
+    "content_hash": "sha256:93dc503a7f77c7278b319b94394d422adfcbe4489076d7811256c3e34e95ddf5",
     "counts": {
       "states": 32,
       "opportunities": 52,
@@ -65,8 +65,8 @@
     ],
     "GA": [
       {
-        "title": "Field Captain",
-        "description": "Support a team of poll monitors in your area, helping them get where they need to be and making sure problems at the polls get reported. Training is live online.",
+        "title": "Poll Monitor",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
         "link": "https://protectthevote.net/"
       }
     ],

@@ -1,8 +1,8 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-22T11:02:35+00:00",
-    "content_hash": "sha256:93dc503a7f77c7278b319b94394d422adfcbe4489076d7811256c3e34e95ddf5",
+    "generated_at": "2026-10-23T11:02:31+00:00",
+    "content_hash": "sha256:654ff5d4f7108544308a40708a76c8e5eaa568242c884ea4271e0d347535ac55",
     "counts": {
       "states": 32,
       "opportunities": 52,
@@ -94,7 +94,7 @@
     "IN": [
       {
         "title": "Voter Advocate",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person, with several sessions to choose from.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online, in person, or on demand.",
         "link": "https://protectthevote.net/"
       }
     ],
@@ -238,7 +238,7 @@
     "PA": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with many sessions to choose from.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
       },
       {
@@ -279,7 +279,7 @@
     "TX": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person, with many sessions to choose from.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with many sessions to choose from.",
         "link": "https://www.mobilize.us/commoncause/event/995221/"
       },
       {

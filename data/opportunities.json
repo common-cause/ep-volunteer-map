@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-23T11:02:31+00:00",
-    "content_hash": "sha256:654ff5d4f7108544308a40708a76c8e5eaa568242c884ea4271e0d347535ac55",
+    "generated_at": "2026-10-23T19:01:33+00:00",
+    "content_hash": "sha256:ce152b2cacae8280de1708a07258f7bc3a82697fb86d423f2f95b8e031629ff3",
     "counts": {
-      "states": 32,
-      "opportunities": 52,
+      "states": 31,
+      "opportunities": 49,
       "no_program": 8
     }
   },
@@ -20,7 +20,7 @@
     "AZ": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online, in person, or on demand.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or on demand.",
         "link": "https://protectthevote.net/"
       }
     ],
@@ -178,11 +178,6 @@
     ],
     "NC": [
       {
-        "title": "Canvass Monitor",
-        "description": "After the election, attend county canvass meetings where results are reviewed and certified, and report anything that looks wrong. Training is live online.",
-        "link": "https://www.mobilize.us/commoncause/event/1042004"
-      },
-      {
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
         "link": "https://protectthevote.net/"
@@ -202,18 +197,11 @@
         "link": "https://americavotes-org.zoom.us/meeting/register/bOYFO5yJTleWvu8tTsy25Q"
       }
     ],
-    "NM": [
-      {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
-        "link": "https://form.jotform.com/261031950202039"
-      }
-    ],
     "NV": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
-        "link": "https://secure.ngpvan.com/-xUpFkCDXkWMKEO0D2AZaA2"
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is in person.",
+        "link": "https://www.epnv.org/"
       }
     ],
     "OH": [
@@ -269,11 +257,6 @@
         "title": "Election Observer",
         "description": "Election observers will play a crucial role in monitoring polling places for issues affecting voters, ensuring there is no voter disenfranchisement, and tracking any problems that can be fixed for future elections. Observers need to be available for at least a two-hour shift on Election Day, November 3. Trainings are in person in Aberdeen, Sioux Falls and Rapid City.",
         "link": "https://www.aclusd.org/event/election-observer-trainings-2/"
-      },
-      {
-        "title": "Election Observer",
-        "description": "Observe at a polling place on Election Day, helping voters and watching for problems that could keep people from casting their ballot. Training is in person.",
-        "link": "https://action.aclu.org/webform/sd-rapidcity-election-observer"
       }
     ],
     "TX": [

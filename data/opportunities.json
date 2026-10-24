@@ -1,8 +1,8 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-24T11:01:56+00:00",
-    "content_hash": "sha256:985330ef1536245a6f255afeba44ee122543b03abfd00fe5969074f404151c29",
+    "generated_at": "2026-10-24T19:01:35+00:00",
+    "content_hash": "sha256:dd4006f241d4cbcc199ab7d78e07426d31fac950c05c4d35e3b2ee05fae2f42e",
     "counts": {
       "states": 31,
       "opportunities": 49,
@@ -115,7 +115,7 @@
     "MA": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
         "link": "https://protectthevote.net/"
       }
     ],

@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-24T19:01:35+00:00",
-    "content_hash": "sha256:dd4006f241d4cbcc199ab7d78e07426d31fac950c05c4d35e3b2ee05fae2f42e",
+    "generated_at": "2026-10-26T19:02:41+00:00",
+    "content_hash": "sha256:e32d99639222f9fba974dff4e82df95ebb834663db837bf6acd33cc13db03c6a",
     "counts": {
       "states": 31,
-      "opportunities": 49,
+      "opportunities": 50,
       "no_program": 8
     }
   },
@@ -61,6 +61,11 @@
         "title": "Voting Rights Legal Monitor",
         "description": "Lawyers can serve as legal monitors at the polls on Election Day, helping resolve problems on the spot so eligible voters can cast their ballot.",
         "link": "https://wetheaction.org/projects/3469-voting-rights-legal-monitor-aug-18-or-nov-3rd"
+      },
+      {
+        "title": "Monitor Electoral No Partidista (en español)",
+        "description": "Ayuda a los votantes en los centros de votación y reporta los problemas que puedan impedir que alguien vote. Abierto a todas las personas; la capacitación es en línea y en español.",
+        "link": "https://mobilize.us/s/acXNN5"
       }
     ],
     "GA": [
@@ -155,12 +160,12 @@
     "MO": [
       {
         "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available in person or on demand.",
+        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
       },
       {
         "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is available in person or on demand.",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
       },
       {

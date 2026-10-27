@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-26T19:02:41+00:00",
-    "content_hash": "sha256:e32d99639222f9fba974dff4e82df95ebb834663db837bf6acd33cc13db03c6a",
+    "generated_at": "2026-10-27T19:01:57+00:00",
+    "content_hash": "sha256:b654d4ff21dadfe3bb41a64eab74a78c411b45dfe815061ad2af18881824843b",
     "counts": {
-      "states": 31,
-      "opportunities": 50,
+      "states": 30,
+      "opportunities": 49,
       "no_program": 8
     }
   },
@@ -193,13 +193,6 @@
         "title": "Poll Watcher",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is available live online or in person.",
         "link": "https://protectthevote.net/"
-      }
-    ],
-    "NH": [
-      {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
-        "link": "https://americavotes-org.zoom.us/meeting/register/bOYFO5yJTleWvu8tTsy25Q"
       }
     ],
     "NV": [

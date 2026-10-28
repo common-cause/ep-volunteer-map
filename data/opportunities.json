@@ -1,8 +1,8 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-27T19:01:57+00:00",
-    "content_hash": "sha256:b654d4ff21dadfe3bb41a64eab74a78c411b45dfe815061ad2af18881824843b",
+    "generated_at": "2026-10-28T11:03:34+00:00",
+    "content_hash": "sha256:deb28f0e625ad270bb41b6f8494b5188b0be77f5b99c8ada28cd0a404d575a13",
     "counts": {
       "states": 30,
       "opportunities": 49,
@@ -153,7 +153,7 @@
     "MN": [
       {
         "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is available live online or on demand.",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
       }
     ],

@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-28T19:01:47+00:00",
-    "content_hash": "sha256:09e2df01fa5002a0448616b94857501f65fcfdfb579f70e9fc8a43e47cb14b2d",
+    "generated_at": "2026-10-29T19:02:05+00:00",
+    "content_hash": "sha256:7af2a315bdcca1b5e53c1d947bd9ab289d39d8fa621f9096a28e7c161dabdb0f",
     "counts": {
-      "states": 29,
-      "opportunities": 48,
+      "states": 27,
+      "opportunities": 46,
       "no_program": 8
     }
   },
@@ -110,13 +110,6 @@
         "link": "https://secure.lglforms.com/form_engine/s/XSYrx-8-LsV10NYE45HGWQ?t=1764091888"
       }
     ],
-    "MA": [
-      {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
-        "link": "https://protectthevote.net/"
-      }
-    ],
     "MD": [
       {
         "title": "Poll Monitor",
@@ -181,17 +174,10 @@
         "link": "https://protectthevote.net/"
       }
     ],
-    "NE": [
-      {
-        "title": "Poll Watcher",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
-        "link": "https://protectthevote.net/"
-      }
-    ],
     "NV": [
       {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is in person.",
+        "title": "Election Protection Volunteer",
+        "description": "Help make sure every eligible voter in Nevada can cast their ballot. Sign up to volunteer with Election Protection and we'll connect you with training and opportunities near you.",
         "link": "https://www.epnv.org/"
       }
     ],

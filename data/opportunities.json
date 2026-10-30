@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-30T11:03:46+00:00",
-    "content_hash": "sha256:cf528c6d451df2f990b3aa81148225c408846b2aadaf0d56ea9c66992ece04d8",
+    "generated_at": "2026-10-30T19:02:03+00:00",
+    "content_hash": "sha256:907c0c0b95a7a0fec4c4027b2e2e9192f2d533d6691f1aeaf1e779ac2616286c",
     "counts": {
-      "states": 27,
-      "opportunities": 43,
+      "states": 25,
+      "opportunities": 40,
       "no_program": 8
     }
   },
@@ -29,11 +29,6 @@
         "title": "Colorado Nonpartisan Election Protection Volunteer Training",
         "description": "Become a Nonpartisan Volunteer Poll Monitor for the 2026 November election",
         "link": "https://airtable.com/appHWQXrXbkSqzwGn/pagJuz8E39VQo2zEI/form"
-      },
-      {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
-        "link": "https://protectthevote.net/"
       }
     ],
     "FL": [
@@ -82,13 +77,6 @@
         "link": "https://www.mobilize.us/commoncause/event/1059798"
       }
     ],
-    "IA": [
-      {
-        "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is live online, with several sessions to choose from.",
-        "link": "https://protectthevote.net/"
-      }
-    ],
     "IN": [
       {
         "title": "Voter Advocate",
@@ -105,8 +93,8 @@
     ],
     "KY": [
       {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with several sessions to choose from.",
+        "title": "Election Protection Volunteer",
+        "description": "Help make sure every eligible voter in Kentucky can cast their ballot. Sign up to volunteer with Election Protection and we'll connect you with training and opportunities near you.",
         "link": "https://secure.lglforms.com/form_engine/s/XSYrx-8-LsV10NYE45HGWQ?t=1764091888"
       }
     ],
@@ -179,13 +167,6 @@
         "title": "Election Protection Volunteer",
         "description": "Help make sure every eligible voter in Nevada can cast their ballot. Sign up to volunteer with Election Protection and we'll connect you with training and opportunities near you.",
         "link": "https://www.epnv.org/"
-      }
-    ],
-    "OH": [
-      {
-        "title": "Poll Monitor",
-        "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online.",
-        "link": "https://www.mobilize.us/ovrc/event/994676/"
       }
     ],
     "OR": [

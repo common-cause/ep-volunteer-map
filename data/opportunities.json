@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-29T19:02:05+00:00",
-    "content_hash": "sha256:7af2a315bdcca1b5e53c1d947bd9ab289d39d8fa621f9096a28e7c161dabdb0f",
+    "generated_at": "2026-10-30T11:03:46+00:00",
+    "content_hash": "sha256:cf528c6d451df2f990b3aa81148225c408846b2aadaf0d56ea9c66992ece04d8",
     "counts": {
       "states": 27,
-      "opportunities": 46,
+      "opportunities": 43,
       "no_program": 8
     }
   },
@@ -190,13 +190,8 @@
     ],
     "OR": [
       {
-        "title": "Election Monitor",
-        "description": "Help monitor the general election in your community, watching for problems that could keep people from casting their ballot and reporting them quickly. Training is on demand, so you can complete it on your own schedule.",
-        "link": "https://act.commoncause.org/forms/join-our-election-protection-team?source=direct_link&"
-      },
-      {
-        "title": "Trusted Messenger",
-        "description": "Share accurate, nonpartisan information about how to vote with people in your community, so they have what they need to cast their ballot. Training is on demand.",
+        "title": "Election Protection Volunteer",
+        "description": "Help make sure every eligible voter in Oregon can cast their ballot. Sign up to volunteer with Election Protection and we'll connect you with training and opportunities near you.",
         "link": "https://act.commoncause.org/forms/join-our-election-protection-team?source=direct_link&"
       }
     ],
@@ -216,16 +211,6 @@
       {
         "title": "Stationary Poll Monitor",
         "description": "Spend a shift at one polling place helping voters and watching for problems that could keep people from casting their ballot. Training is on demand, so you can complete it on your own schedule.",
-        "link": "https://protectthevote.net/"
-      },
-      {
-        "title": "Roving Poll Monitor",
-        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
-        "link": "https://protectthevote.net/"
-      },
-      {
-        "title": "Early Voting Monitor",
-        "description": "Monitor early voting sites in the days before the election, helping voters and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
         "link": "https://protectthevote.net/"
       }
     ],

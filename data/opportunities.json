@@ -1,11 +1,11 @@
 {
   "_meta": {
     "schema_version": 1,
-    "generated_at": "2026-10-30T19:02:03+00:00",
-    "content_hash": "sha256:907c0c0b95a7a0fec4c4027b2e2e9192f2d533d6691f1aeaf1e779ac2616286c",
+    "generated_at": "2026-10-31T11:02:24+00:00",
+    "content_hash": "sha256:4b5cbac4461a54175a66f044e511c879d0541579031c137b4882c760ceb9eddd",
     "counts": {
-      "states": 25,
-      "opportunities": 40,
+      "states": 26,
+      "opportunities": 41,
       "no_program": 8
     }
   },
@@ -75,6 +75,13 @@
         "title": "Poll Monitor",
         "description": "Spend a shift at a polling place helping voters and watching for problems that could keep people from casting their ballot. Training is live online, with many sessions to choose from.",
         "link": "https://www.mobilize.us/commoncause/event/1059798"
+      }
+    ],
+    "IA": [
+      {
+        "title": "Roving Poll Monitor",
+        "description": "Travel between several polling places, checking in on how voting is going and reporting problems so they can be fixed quickly. Training is on demand, so you can complete it on your own schedule.",
+        "link": "https://protectthevote.net/"
       }
     ],
     "IN": [
